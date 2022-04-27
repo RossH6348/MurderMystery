@@ -5,11 +5,13 @@ using UnityEngine;
 public class Node
 {
 
+    public Vector2Int indexPos;
     public Vector3 position;
     public float G = 0.0f;
     public float H = 0.0f;
     public float F = 0.0f;
 
+    public bool isOpened = false;
     public bool isClosed = false;
     public Node Parent = null;
 
@@ -18,6 +20,7 @@ public class Node
     public void ResetNode()
     {
         G = H = F = 0.0f;
+        isOpened = false;
         isClosed = false;
         Parent = null;
     }
@@ -46,7 +49,8 @@ public class GridSystem : MonoBehaviour
                 Vector3 nodePos = new Vector3((float)x + 0.5f, 0.0f, (float)y + 0.5f);
 
                 //The node object will have the real worldspace position for collision checking.
-                nodeObj.position = nodeObj.position + nodePos;
+                nodeObj.indexPos = new Vector2Int(x, y);
+                nodeObj.position = transform.position + nodePos;
 
                 GameObject newGrid = Instantiate(gridPrefab, transform);
                 newGrid.transform.localPosition = nodePos;
@@ -60,7 +64,6 @@ public class GridSystem : MonoBehaviour
             grid.Add(column);
         }
     }
-
 
     //This will get the node object at the position given, this should allow easier alignment.
     public Node getNodeAtPos(Vector3 position)
@@ -90,7 +93,7 @@ public class GridSystem : MonoBehaviour
     public List<Vector3> findPath(Vector3 startPos, Vector3 endPos)
     {
 
-        //First we need to find our start and end nodes.
+        //First we need to find our start and end nodes, aligning given positions to grid indexes.
         Node startNode = getNodeAtPos(startPos);
         Node endNode = getNodeAtPos(endPos);
 
@@ -99,7 +102,7 @@ public class GridSystem : MonoBehaviour
 
         //Okay valid start and end node found, reset the grid in preparation.
         for(int x = gridSize.x - 1; x > -1; x--)
-            for(int y = gridSize.y; y > -1; y--)
+            for(int y = gridSize.y - 1; y > -1; y--)
                 grid[x][y].ResetNode();
 
 
@@ -120,7 +123,6 @@ public class GridSystem : MonoBehaviour
 
             //First find the lowest F costing node.
             Node current = open[0];
-            float minF = Mathf.Infinity;
             for (int i = open.Count - 1; i > 0; i--)
                 if(current == null || open[i].F < current.F)
                     current = open[i];
@@ -133,9 +135,81 @@ public class GridSystem : MonoBehaviour
             current.isClosed = true;
 
             //Begin checking/searching for neighbours.
+            List<Node> neighbours = new List<Node>();
+            for(int x = -1; x <= 1; x++)
+            {
+                for(int y = -1; y <= 1; y++)
+                {
+                    if (x == 0 && y == 0)
+                        continue; //Don't include itself as a neighbour...
 
+                    int neighX = current.indexPos.x + x;
+                    int neighY = current.indexPos.y + y;
+
+                    if (neighX < 0 || neighX >= gridSize.x || neighY < 0 || neighY >= gridSize.y)
+                        continue; //Check if this neighbour is within the boundary.
+
+                    //Okay we found a neighbour in the array, let check for no collisions to see if we can count it as a neighbour.
+                    Node neighbour = grid[neighX][neighY];
+
+                    Vector3 toNeighbour = (neighbour.position - current.position);
+                    if (!Physics.Raycast(current.position, toNeighbour.normalized, toNeighbour.magnitude))
+                    {
+                        //Okay nothing is in the way, we can add this neighbour.
+                        neighbours.Add(neighbour);
+                    }
+
+                }
+            }
+
+            //Go through the neighbours.
+            foreach(Node neighbour in neighbours)
+            {
+                //If the neighbour is in the closed list, don't bother checking.
+                if (neighbour.isClosed)
+                    continue;
+
+                float currentG = current.G + (neighbour.position - current.position).magnitude;
+
+                //Check if it is in the open list, then only check for G cost, otherwise add this new neighbour to open list.
+                if (neighbour.isOpened)
+                {
+                    if (currentG >= neighbour.G)
+                        continue; //If G is greater, skip as going this way will result in shorter path.
+                }
+                else
+                {
+                    open.Add(neighbour); //Add this neighbour to the open list.
+                    neighbour.isOpened = true;
+                }
+
+                //Set parent, and G H costs.
+                neighbour.Parent = current;
+                neighbour.G = currentG;
+                neighbour.H = (endNode.position - neighbour.position).magnitude;
+                neighbour.F = currentG + neighbour.H;
+
+            }
         }
 
+        if(endNode.Parent != null)
+        {
+            //The end node have a parent! A valid path is found!
+            List<Vector3> Path = new List<Vector3>();
+
+            //Add each of the parents into the path list.
+            while(endNode != null)
+            {
+                Path.Add(endNode.position);
+                endNode = endNode.Parent;
+            }
+
+            //Now the path is currently in reverse, going from end to start. So reverse it now.
+            Path.Reverse();
+
+            //Now we can return the path of positions.
+            return Path;
+        }
 
         return null; //If it reaches here, then it means there is no valid path to be found!
     }
