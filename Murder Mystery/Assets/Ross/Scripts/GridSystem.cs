@@ -88,18 +88,28 @@ public class GridSystem : MonoBehaviour
         return grid[gridX][gridY];
     }
 
+    /*
     [SerializeField] private Transform start;
     [SerializeField] private Transform end;
 
+    List<GameObject> previousPath = new List<GameObject>();
     private void Update()
     {
+        for (int i = previousPath.Count - 1; i > -1; i--)
+            previousPath[i].GetComponent<MeshRenderer>().enabled = false;
 
         List<GameObject> Path = findPath(start.position, end.position);
-        if(Path != null)
-            for(int i =0; i<Path.Count - 1; i++)
-                Debug.DrawLine(Path[i].transform.position, Path[i + 1].transform.position, Color.red);
+        if (Path != null)
+        {
+            for (int i = 0; i < Path.Count; i++)
+                Path[i].GetComponent<MeshRenderer>().enabled = true;
+
+            if (previousPath != Path)
+                previousPath = Path;
+        }
 
     }
+    */
 
     //This will attempt to find a path and return if a possible one is found.
     public List<GameObject> findPath(Vector3 startPos, Vector3 endPos)
@@ -165,7 +175,7 @@ public class GridSystem : MonoBehaviour
                     Node neighbour = grid[neighX][neighY];
 
                     Vector3 toNeighbour = (neighbour.position - current.position);
-                    if (!Physics.Raycast(current.position, toNeighbour.normalized, toNeighbour.magnitude))
+                    if (!Physics.Raycast(current.position, toNeighbour.normalized, toNeighbour.magnitude,~LayerMask.GetMask("Node")))
                     {
                         //Okay nothing is in the way, we can add this neighbour.
                         neighbours.Add(neighbour);

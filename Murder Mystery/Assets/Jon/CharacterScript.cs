@@ -31,10 +31,22 @@ public class CharacterScript : MonoBehaviour
 
     public TurnSystem turnSystem;
 
+    public GridSystem gridSystem; //So the player and AI can make use of the pathfinding system.
+
     private void Update()
     {
         if(status == turnStatus.Play)
             onTurnTick();
+    }
+
+    public virtual void onTurnEnter()
+    {
+
+    }
+
+    public virtual void onTurnExit()
+    {
+
     }
 
     public virtual void onTurnTick()

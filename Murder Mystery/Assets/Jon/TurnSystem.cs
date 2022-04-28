@@ -36,6 +36,7 @@ public class TurnSystem : MonoBehaviour
             if(character.status == turnStatus.Play)
             {
                 character.status = turnStatus.Wait;
+                character.onTurnExit();
                 nextPlayer();
             }
         }
@@ -58,6 +59,8 @@ public class TurnSystem : MonoBehaviour
 
         //Update status to play, so their controls can be activated.
         character.status = turnStatus.Play;
+
+        character.onTurnEnter();
 
         Debug.Log("It is currently: " + character.name + "'s turn!");
 
