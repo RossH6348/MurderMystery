@@ -88,9 +88,21 @@ public class GridSystem : MonoBehaviour
         return grid[gridX][gridY];
     }
 
+    [SerializeField] private Transform start;
+    [SerializeField] private Transform end;
+
+    private void Update()
+    {
+
+        List<GameObject> Path = findPath(start.position, end.position);
+        if(Path != null)
+            for(int i =0; i<Path.Count - 1; i++)
+                Debug.DrawLine(Path[i].transform.position, Path[i + 1].transform.position, Color.red);
+
+    }
 
     //This will attempt to find a path and return if a possible one is found.
-    public List<Vector3> findPath(Vector3 startPos, Vector3 endPos)
+    public List<GameObject> findPath(Vector3 startPos, Vector3 endPos)
     {
 
         //First we need to find our start and end nodes, aligning given positions to grid indexes.
@@ -195,12 +207,12 @@ public class GridSystem : MonoBehaviour
         if(endNode.Parent != null)
         {
             //The end node have a parent! A valid path is found!
-            List<Vector3> Path = new List<Vector3>();
+            List<GameObject> Path = new List<GameObject>();
 
             //Add each of the parents into the path list.
             while(endNode != null)
             {
-                Path.Add(endNode.position);
+                Path.Add(endNode.zone);
                 endNode = endNode.Parent;
             }
 
