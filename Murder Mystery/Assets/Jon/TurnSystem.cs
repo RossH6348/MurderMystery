@@ -26,9 +26,11 @@ public class TurnSystem : MonoBehaviour
         CharacterScript character = players[currentTurn].GetComponent<CharacterScript>();
         if (turnTime > 0.0f && remainingActions > 0)
         {
-            //If the character still got actions left to do while timer is there, keep counting donw.
-            if(character.status != turnStatus.Action)
+            //If the character still got actions left to do while timer is there, keep counting down.
+            if (character.status != turnStatus.Action)
                 turnTime -= Time.deltaTime;
+            else
+                turnTime = 12.0f;
         }
         else
         {

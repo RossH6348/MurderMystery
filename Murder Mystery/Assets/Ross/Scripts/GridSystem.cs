@@ -122,6 +122,9 @@ public class GridSystem : MonoBehaviour
         if (startNode == null || endNode == null)
             return null; //No valid start or end node, immediately return empty path.
 
+        if (startNode == endNode)
+            return null; //Why would you pathfind to destination... if you are at the destination already?
+
         //Okay valid start and end node found, reset the grid in preparation.
         for(int x = gridSize.x - 1; x > -1; x--)
             for(int y = gridSize.y - 1; y > -1; y--)
@@ -220,7 +223,7 @@ public class GridSystem : MonoBehaviour
             List<GameObject> Path = new List<GameObject>();
 
             //Add each of the parents into the path list.
-            while(endNode != null)
+            while(endNode.Parent != null)
             {
                 Path.Add(endNode.zone);
                 endNode = endNode.Parent;

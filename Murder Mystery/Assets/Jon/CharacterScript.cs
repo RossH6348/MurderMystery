@@ -33,6 +33,8 @@ public class CharacterScript : MonoBehaviour
 
     public GridSystem gridSystem; //So the player and AI can make use of the pathfinding system.
 
+    protected int maxRoll = 10; //How far can they move?
+
     private void Update()
     {
         if(status == turnStatus.Play)
@@ -52,6 +54,11 @@ public class CharacterScript : MonoBehaviour
     public virtual void onTurnTick()
     {
 
+    }
+
+    public virtual void MoveTo(Vector3 nodePosition)
+    {
+        
     }
 
 }
