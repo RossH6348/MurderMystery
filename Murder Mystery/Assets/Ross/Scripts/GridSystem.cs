@@ -30,7 +30,9 @@ public class Node
 public class GridSystem : MonoBehaviour
 {
 
-    public Vector2Int gridSize;
+    public Vector2Int gridMapSize;
+
+    public float gridSize = 1.0f;
 
     [SerializeField] private GameObject gridPrefab;
     private List<List<Node>> grid = new List<List<Node>>();
@@ -39,14 +41,14 @@ public class GridSystem : MonoBehaviour
     private void Awake()
     {
 
-        for(int x = 0; x < gridSize.x; x++)
+        for(int x = 0; x < gridMapSize.x; x++)
         {
             List<Node> column = new List<Node>();
-            for(int y = 0; y < gridSize.y; y++)
+            for(int y = 0; y < gridMapSize.y; y++)
             {
                 Node nodeObj = new Node();
 
-                Vector3 nodePos = new Vector3((float)x + 0.5f, 0.0f, (float)y + 0.5f);
+                Vector3 nodePos = new Vector3(((float)x + 0.5f) * gridSize, 0.0f, ((float)y + 0.5f) * gridSize);
 
                 //The node object will have the real worldspace position for collision checking.
                 nodeObj.indexPos = new Vector2Int(x, y);
@@ -54,6 +56,7 @@ public class GridSystem : MonoBehaviour
 
                 GameObject newGrid = Instantiate(gridPrefab, transform);
                 newGrid.transform.localPosition = nodePos;
+                newGrid.transform.localScale = (new Vector3(gridSize, gridSize, 1.0f)) * 100.0f;
                 newGrid.name = "NodeX" + x.ToString() + "Y" + y.ToString();
                 newGrid.SetActive(true);
 
@@ -68,20 +71,20 @@ public class GridSystem : MonoBehaviour
     //This will get the node object at the position given, this should allow easier alignment.
     public Node getNodeAtPos(Vector3 position)
     {
-        if (gridSize.x == 0 || gridSize.y == 0)
+        if (gridMapSize.x == 0 || gridMapSize.y == 0)
             return null; //The grid is empty... Nothing to return.
 
         position -= transform.position; //Make this position relative to the grid system.
 
         //Extract the floored X and Y component from the position's X and Z, since Y is up and down?
-        int gridX = Mathf.FloorToInt(position.x);
+        int gridX = Mathf.FloorToInt(position.x / gridSize);
 
-        if (gridX < 0 || gridX >= gridSize.x)
+        if (gridX < 0 || gridX >= gridMapSize.x)
             return null; //Out of grid range, automatically return nothing.
 
-        int gridY = Mathf.FloorToInt(position.z);
+        int gridY = Mathf.FloorToInt(position.z / gridSize);
 
-        if (gridY < 0 || gridY >= gridSize.y)
+        if (gridY < 0 || gridY >= gridMapSize.y)
             return null; //Out of grid range, automatically return nothing.
 
         //Okay a valid node is found, return the node in the grid.
@@ -126,8 +129,8 @@ public class GridSystem : MonoBehaviour
             return null; //Why would you pathfind to destination... if you are at the destination already?
 
         //Okay valid start and end node found, reset the grid in preparation.
-        for(int x = gridSize.x - 1; x > -1; x--)
-            for(int y = gridSize.y - 1; y > -1; y--)
+        for(int x = gridMapSize.x - 1; x > -1; x--)
+            for(int y = gridMapSize.y - 1; y > -1; y--)
                 grid[x][y].ResetNode();
 
 
@@ -171,7 +174,7 @@ public class GridSystem : MonoBehaviour
                     int neighX = current.indexPos.x + x;
                     int neighY = current.indexPos.y + y;
 
-                    if (neighX < 0 || neighX >= gridSize.x || neighY < 0 || neighY >= gridSize.y)
+                    if (neighX < 0 || neighX >= gridMapSize.x || neighY < 0 || neighY >= gridMapSize.y)
                         continue; //Check if this neighbour is within the boundary.
 
                     //Okay we found a neighbour in the array, let check for no collisions to see if we can count it as a neighbour.

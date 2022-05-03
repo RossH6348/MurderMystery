@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 
 public class VRPlayerScript : CharacterScript
 {
@@ -12,14 +13,20 @@ public class VRPlayerScript : CharacterScript
     private GameObject laser;
     private GameObject selectedObject = null;
 
+
+    //VR Control scheme.
+    public SteamVR_Action_Boolean triggerAction;
+
+
     // Start is called before the first frame update
     private void Awake()
     {
         name = "Ross";
 
         laser = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        laser.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+        laser.transform.localScale = new Vector3(0.025f, 0.025f, 0.025f);
         laser.transform.position = pointer.position;
+        laser.transform.SetParent(pointer);
 
         BoxCollider collider = laser.GetComponent<BoxCollider>();
         if (collider != null)
@@ -52,9 +59,8 @@ public class VRPlayerScript : CharacterScript
                     laser.SetActive(true);
 
                 //Position and rotate the laser correctly, so show the player what they are pointing at.
-                laser.transform.position = (pointer.position + result.point) * 0.5f;
-                laser.transform.localScale = new Vector3(0.05f, 0.05f, (pointer.position - result.point).magnitude);
-                laser.transform.rotation *= Quaternion.FromToRotation(laser.transform.forward, pointer.transform.forward);
+                laser.transform.localPosition = new Vector3(0.0f, 0.0f, (pointer.position - result.point).magnitude * 0.5f);
+                laser.transform.localScale = new Vector3(0.025f, 0.025f, (pointer.position - result.point).magnitude);
 
                 laserSelected = result.collider.gameObject;
 
@@ -88,13 +94,12 @@ public class VRPlayerScript : CharacterScript
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.Space) && selectedObject != null)
+        if (triggerAction.GetStateDown(SteamVR_Input_Sources.RightHand) && selectedObject != null)
         {
             LaserInput input = selectedObject.GetComponent<LaserInput>();
             if (input != null)
                 input.onLaserClick(this);
         }
-
     }
 
     public override void onTurnExit()
