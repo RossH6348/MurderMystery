@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
+using Valve.VR.InteractionSystem;
 
 public class VRPlayerScript : CharacterScript
 {
@@ -48,7 +49,7 @@ public class VRPlayerScript : CharacterScript
 
         GameObject laserSelected = null;
 
-        if(attachmentPoint.childCount < 1)
+        if(GetComponentInChildren<Interactable>() == null)
         {
             //Allow the VR player to carry out their controls with the laser pointer.
             RaycastHit result;
