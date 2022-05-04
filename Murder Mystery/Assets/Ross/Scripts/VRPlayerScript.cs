@@ -129,7 +129,7 @@ public class VRPlayerScript : CharacterScript
         List<GameObject> Path = gridSystem.findPath(startPos, nodePosition);
 
         //Check if they rolled high enough to cover the path.
-        if(Path.Count <= maxRoll)
+        if (Path != null && Path.Count <= maxRoll)
         {
             //Yes they have! They can move this many spaces, start coroutine loop of moving node by node during action phase, while taking up an action.
             StartCoroutine(movePath(Path, transform, 0.5f));

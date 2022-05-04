@@ -33,7 +33,7 @@ public class CharacterScript : MonoBehaviour
 
     public GridSystem gridSystem; //So the player and AI can make use of the pathfinding system.
 
-    protected int maxRoll = 10; //How far can they move?
+    public int maxRoll = 0; //How far can they move?
 
     private void Update()
     {
