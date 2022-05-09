@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 8501045515841533169}
   - component: {fileID: 4780039177597516628}
   - component: {fileID: 7328177961183907742}
+  - component: {fileID: 718932457868089150}
+  - component: {fileID: 235742407517809234}
+  - component: {fileID: 7443356794308522656}
   m_Layer: 0
   m_Name: Hallway_Floor
   m_TagString: Untagged
@@ -59,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 75078ced99dc4b043a56a6e3d7dd5800, type: 2}
+  - {fileID: 2100000, guid: 048e4fa4c14f8ac46b79762944b187e2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -81,3 +84,42 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &718932457868089150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9129385197548678731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c725bf4b8e6c1f4983fec62d67a15f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileScale: {x: 2, y: 2}
+--- !u!65 &235742407517809234
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9129385197548678731}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 0.15, z: 18}
+  m_Center: {x: -2, y: -0.075, z: 9}
+--- !u!65 &7443356794308522656
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9129385197548678731}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 16, y: 0.15, z: 4}
+  m_Center: {x: 4, y: -0.075, z: 2}

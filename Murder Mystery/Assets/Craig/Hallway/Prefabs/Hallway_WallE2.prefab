@@ -202,6 +202,9 @@ GameObject:
   - component: {fileID: 6474299991974645930}
   - component: {fileID: 9096605783929807968}
   - component: {fileID: 7295091096622319028}
+  - component: {fileID: 2091534147082000997}
+  - component: {fileID: 505660830012430800}
+  - component: {fileID: 2791182656526488228}
   m_Layer: 0
   m_Name: Hallway_WallE2
   m_TagString: Untagged
@@ -287,3 +290,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileScale: {x: 40, y: 64}
+--- !u!65 &2091534147082000997
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7295091096622319029}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2526606, y: 2, z: 2.0000033}
+  m_Center: {x: 0.3736702, y: 0.000000095370915, z: 0.000026201118}
+--- !u!65 &505660830012430800
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7295091096622319029}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.25509956, y: 2, z: 2.0000033}
+  m_Center: {x: -0.87244993, y: 0.000000095351766, z: 0.000048534417}
+--- !u!65 &2791182656526488228
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7295091096622319029}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.49626648, y: 0.29914203, z: 2.0000033}
+  m_Center: {x: -0.49917755, y: 0.85042524, z: 0.00003514351}

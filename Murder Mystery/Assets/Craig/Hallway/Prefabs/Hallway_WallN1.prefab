@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 7062084200464227509}
   - component: {fileID: 5036545420373878911}
   - component: {fileID: 906079133726496729}
+  - component: {fileID: 3675249223225014958}
   m_Layer: 0
   m_Name: Hallway_WallN1
   m_TagString: Untagged
@@ -191,3 +192,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileScale: {x: 1, y: 61.44}
+--- !u!65 &3675249223225014958
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6838042103095675306}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2.0000002, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}

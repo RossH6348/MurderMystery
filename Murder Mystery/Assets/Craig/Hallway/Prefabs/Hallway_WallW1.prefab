@@ -107,6 +107,10 @@ GameObject:
   - component: {fileID: 1716148316688773452}
   - component: {fileID: 3473414976973997446}
   - component: {fileID: 4196364701479669745}
+  - component: {fileID: 6309777052654057602}
+  - component: {fileID: 7631810168320923558}
+  - component: {fileID: 1435138561938222918}
+  - component: {fileID: 3296006632905445368}
   m_Layer: 0
   m_Name: Hallway_WallW1
   m_TagString: Untagged
@@ -193,6 +197,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileScale: {x: 40, y: 288}
+--- !u!65 &6309777052654057602
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3113378177253188691}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0000002, y: 0.29451126, z: 2}
+  m_Center: {x: 0, y: 0.85274446, z: 0}
+--- !u!65 &7631810168320923558
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3113378177253188691}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2796348, y: 2.0048747, z: 2.0048745}
+  m_Center: {x: -0.8608673, y: 0, z: 0}
+--- !u!65 &1435138561938222918
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3113378177253188691}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5009937, y: 2.0000002, z: 2}
+  m_Center: {x: 0.7498749, y: 0, z: 0}
+--- !u!65 &3296006632905445368
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3113378177253188691}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0031029, y: 2.0000002, z: 2}
+  m_Center: {x: -0.11058429, y: 0, z: 0}
 --- !u!1 &3377242782662428508
 GameObject:
   m_ObjectHideFlags: 0
