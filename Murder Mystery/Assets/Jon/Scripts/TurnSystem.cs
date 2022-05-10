@@ -64,7 +64,7 @@ public class TurnSystem : MonoBehaviour
 
         character.onTurnEnter();
 
-        Debug.Log("It is currently: " + character.name + "'s turn!");
+        Debug.Log("It is currently: " + character.characterName + "'s turn!");
 
     }
     private void nextPlayer()
@@ -80,4 +80,18 @@ public class TurnSystem : MonoBehaviour
         remainingActions--;
     }
 
+    public int getRemainingActions()
+    {
+        return remainingActions;
+    }
+
+    //This will return the transform of a character requested.
+    //Allowing AI to follow other players for instance.
+    public Transform getPlayerTransform(string name)
+    {
+        for (int i = 0; i < players.Count; i++)
+            if (players[i].GetComponent<CharacterScript>().characterName.Equals(name))
+                return players[i].transform;
+        return null;
+    }
 }

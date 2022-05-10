@@ -20,7 +20,7 @@ public class CharacterScript : MonoBehaviour
 {
 
     //THE NAME OF THIS CHARACTER.
-    public string NAME = "Matey";
+    public string characterName = "Matey";
 
     //Assassin's target.
     public string target = "";

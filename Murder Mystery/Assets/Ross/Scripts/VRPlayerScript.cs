@@ -22,8 +22,6 @@ public class VRPlayerScript : CharacterScript
     // Start is called before the first frame update
     private void Awake()
     {
-        name = "Ross";
-
         laser = GameObject.CreatePrimitive(PrimitiveType.Cube);
         laser.transform.localScale = new Vector3(0.025f, 0.025f, 0.025f);
         laser.transform.position = pointer.position;
