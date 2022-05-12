@@ -228,7 +228,9 @@ MonoBehaviour:
   players:
   - {fileID: 146538401}
   - {fileID: 1241969851}
-  turnTime: 12
+  startingTurnTime: 5
+  turnTime: 5
+  dicePrefab: {fileID: 7414647647798083682, guid: 0393258ebded76d49a728217b7ff7522, type: 3}
 --- !u!4 &140218887
 Transform:
   m_ObjectHideFlags: 0
