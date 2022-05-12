@@ -1,3 +1,12 @@
+//Author: Craig Zeki
+//ID: zek21003166
+
+//Based on and modified from: Unity | Create Behaviour Trees using UI Builder, GraphView, and Scriptable Objects [AI #11]
+//Reference: https://youtu.be/nKpM98I7PeM
+//Ref. Author: TheKiwiCoder
+//Ref. Date: 28-May-2021
+//Accessed. Date: 12-May-2021
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +25,11 @@ namespace ZekstersLab.BehaviourTree
     public abstract class Node : ScriptableObject
     {
         public NodeState state = NodeState.Ready;
-        private Dictionary<string, object> contextData = new Dictionary<string, object>();
+        
+        //public string guid;
+
+        //reference to the top of the tree (to get access to the database)
+        protected BehaviourTree myTree;
 
         public NodeState Update()
         {
@@ -53,6 +66,11 @@ namespace ZekstersLab.BehaviourTree
             {
                 state = NodeState.Ready;
             }
+        }
+
+        public virtual void SetTree(BehaviourTree tree)
+        {
+            myTree = tree;
         }
 
         protected abstract void OnStart();

@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace ZekstersLab.BehaviourTree
 {
+    
     public class InverterNode : DecoratorNode
     {
         public override void Pause()
