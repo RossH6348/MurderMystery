@@ -8,9 +8,12 @@ public class TurnSystem : MonoBehaviour
 
     private int currentTurn = 0;
 
-    public float turnTime = 12f;
+    [SerializeField] private float startingTurnTime = 60.0f;
+    public float turnTime = 0.0f;
 
     private int remainingActions = 0;
+
+    [SerializeField] private GameObject dicePrefab; //The dice prefab to give to other players.
 
     // Start is called before the first frame update
     void Start()
@@ -29,8 +32,6 @@ public class TurnSystem : MonoBehaviour
             //If the character still got actions left to do while timer is there, keep counting down.
             if (character.status != turnStatus.Action)
                 turnTime -= Time.deltaTime;
-            else
-                turnTime = 12.0f;
         }
         else
         {
@@ -47,7 +48,7 @@ public class TurnSystem : MonoBehaviour
     private void startTurn()
     {
         //Start timer and give amount of actions they can perform.
-        turnTime = 12.0f;
+        turnTime = startingTurnTime; ;
         //Set the character's turn status to play.
         GameObject activeCharacter = players[currentTurn];
 
@@ -65,6 +66,17 @@ public class TurnSystem : MonoBehaviour
         character.onTurnEnter();
 
         Debug.Log("It is currently: " + character.characterName + "'s turn!");
+
+        if(activeCharacter.GetComponent<AIScript>() == null)
+        {
+            //This is a player or VR player, we can give them a physical dice to use.
+            character.grantDice(Instantiate(dicePrefab));
+        }
+        else
+        {
+            //Automatically just give the AI it's movement amount.
+            character.maxRoll += Random.Range(1, 6);
+        }
 
     }
     private void nextPlayer()

@@ -117,6 +117,8 @@ public class VRPlayerScript : CharacterScript
         //Turn off their laser as well.
         laser.SetActive(false);
 
+        base.onTurnExit(); //Go back to the main, which will handle removing unrolled dice for us.
+
     }
 
     public override void MoveTo(Vector3 nodePosition)
@@ -140,28 +142,14 @@ public class VRPlayerScript : CharacterScript
 
     }
 
-
-    //This will start a coroutine loop of moving an object through a path.
-    public IEnumerator movePath(List<GameObject> path, Transform transform, float time)
+    public override void grantDice(GameObject dice)
     {
-        status = turnStatus.Action; //Set this player to action status.
-        while (path.Count > 0)
-        {
-            GameObject node = path[0];
 
-            Vector3 currentPos = transform.position;
-            float t = 0.0f;
-            while(t < 1.0f)
-            {
-                t += Time.deltaTime / time;
-                transform.position = Vector3.Lerp(currentPos, node.transform.position, t);
-                yield return new WaitForEndOfFrame();
-            }
+        //We need to position this dice infront of the player.
+        dice.transform.position = transform.position + transform.forward + new Vector3(0.0f, 1.0f, 0.0f);
 
-            path.RemoveAt(0);
-        }
+        base.grantDice(dice); //We need to return to the base function, which will automatically set the roller of the dice for us.
 
-        status = turnStatus.Play; //Set this player back to play status.
     }
 
 }

@@ -35,6 +35,9 @@ public class CharacterScript : MonoBehaviour
 
     public int maxRoll = 0; //How far can they move?
 
+    //This stores the dice granted, just so we have a way of removing it if their turn ends and they didn't roll the dice.
+    protected GameObject playerDice;
+
     private void Update()
     {
         if(status == turnStatus.Play)
@@ -49,6 +52,9 @@ public class CharacterScript : MonoBehaviour
     public virtual void onTurnExit()
     {
 
+        if (playerDice != null)
+            Destroy(playerDice);
+
     }
 
     public virtual void onTurnTick()
@@ -60,5 +66,39 @@ public class CharacterScript : MonoBehaviour
     {
         
     }
+
+    public virtual void grantDice(GameObject dice)
+    {
+
+        dice.GetComponent<DiceScript>().roller = this; //Automatically set the roller to this script.
+
+        playerDice = dice;
+
+    }
+
+
+    //This will start a coroutine loop of moving an object through a path.
+    public IEnumerator movePath(List<GameObject> path, Transform transform, float time)
+    {
+        status = turnStatus.Action; //Set this player to action status.
+        while (path.Count > 0)
+        {
+            GameObject node = path[0];
+
+            Vector3 currentPos = transform.position;
+            float t = 0.0f;
+            while (t < 1.0f)
+            {
+                t += Time.deltaTime / time;
+                transform.position = Vector3.Lerp(currentPos, node.transform.position, t);
+                yield return new WaitForEndOfFrame();
+            }
+
+            path.RemoveAt(0);
+        }
+
+        status = turnStatus.Play; //Set this player back to play status.
+    }
+
 
 }
