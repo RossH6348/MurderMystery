@@ -13,7 +13,7 @@ using UnityEngine;
 
 namespace ZekstersLab.BehaviourTree
 {
-    public abstract class ActionNode : Node
+    public abstract class ActionNode : BehaviourTreeBaseNode
     {
         
     }

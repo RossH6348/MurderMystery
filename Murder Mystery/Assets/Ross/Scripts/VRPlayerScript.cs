@@ -131,8 +131,9 @@ public class VRPlayerScript : CharacterScript
         //Check if they rolled high enough to cover the path.
         if (Path != null && Path.Count <= maxRoll)
         {
+            status = turnStatus.Action;
             //Yes they have! They can move this many spaces, start coroutine loop of moving node by node during action phase, while taking up an action.
-            StartCoroutine(movePath(Path, transform, 0.5f));
+            StartCoroutine(Helpers.movePath(Path, transform, 0.5f, () => { status = turnStatus.Play; }));
 
             maxRoll -= Path.Count; //They may have not move all of there spaces in one go, so subtract by path count.
 

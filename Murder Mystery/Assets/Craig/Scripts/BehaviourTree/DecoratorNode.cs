@@ -14,9 +14,9 @@ using UnityEngine;
 namespace ZekstersLab.BehaviourTree
 {
 
-    public abstract class DecoratorNode : Node
+    public abstract class DecoratorNode : BehaviourTreeBaseNode
     {
-        public Node child;
+        public BehaviourTreeBaseNode child;
 
         public override void Reset()
         {

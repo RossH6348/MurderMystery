@@ -22,7 +22,7 @@ namespace ZekstersLab.BehaviourTree
         //Add new states above this line
         NumOfStates
     }
-    public abstract class Node : ScriptableObject
+    public abstract class BehaviourTreeBaseNode : ScriptableObject
     {
         public NodeState state = NodeState.Ready;
         

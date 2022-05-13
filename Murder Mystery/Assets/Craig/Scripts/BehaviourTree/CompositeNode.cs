@@ -13,14 +13,14 @@ using UnityEngine;
 
 namespace ZekstersLab.BehaviourTree
 {
-    public abstract class CompositeNode : Node
+    public abstract class CompositeNode : BehaviourTreeBaseNode
     {
-        public List<Node> children = new List<Node>();
+        public List<BehaviourTreeBaseNode> children = new List<BehaviourTreeBaseNode>();
 
         public override void Reset()
         {
             base.Reset();
-            foreach (Node child in children)
+            foreach (BehaviourTreeBaseNode child in children)
             {
                 child.Reset();
             }
@@ -29,7 +29,7 @@ namespace ZekstersLab.BehaviourTree
         public override void SetTree(BehaviourTree tree)
         {
             base.SetTree(tree);
-            foreach (Node child in children)
+            foreach (BehaviourTreeBaseNode child in children)
             {
                 child.SetTree(tree);
             }

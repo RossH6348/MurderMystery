@@ -77,28 +77,7 @@ public class CharacterScript : MonoBehaviour
     }
 
 
-    //This will start a coroutine loop of moving an object through a path.
-    public IEnumerator movePath(List<GameObject> path, Transform transform, float time)
-    {
-        status = turnStatus.Action; //Set this player to action status.
-        while (path.Count > 0)
-        {
-            GameObject node = path[0];
-
-            Vector3 currentPos = transform.position;
-            float t = 0.0f;
-            while (t < 1.0f)
-            {
-                t += Time.deltaTime / time;
-                transform.position = Vector3.Lerp(currentPos, node.transform.position, t);
-                yield return new WaitForEndOfFrame();
-            }
-
-            path.RemoveAt(0);
-        }
-
-        status = turnStatus.Play; //Set this player back to play status.
-    }
+    
 
 
 }

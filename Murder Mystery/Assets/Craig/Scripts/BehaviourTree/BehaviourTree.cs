@@ -17,7 +17,7 @@ namespace ZekstersLab.BehaviourTree
     
     public class BehaviourTree : ScriptableObject
     {
-        public Node root;
+        public BehaviourTreeBaseNode root;
         public NodeState treeState = NodeState.Ready;
         //public List<Node> nodes = new List<Node>();
         private Dictionary<string, object> contextData = new Dictionary<string, object>();
@@ -27,7 +27,7 @@ namespace ZekstersLab.BehaviourTree
             return root.Update();
         }
 
-        public void SetRoot(Node root)
+        public void SetRoot(BehaviourTreeBaseNode root)
         {
             this.root = root;
             this.root.SetTree(this);
