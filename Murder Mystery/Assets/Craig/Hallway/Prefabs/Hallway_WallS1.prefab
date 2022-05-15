@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileScale: {x: 40, y: 252.8}
+  materialTileScales:
+  - {x: 40, y: 252.8}
 --- !u!65 &6624469506412457724
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -205,3 +207,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileScale: {x: 1, y: 252.8}
+  materialTileScales:
+  - {x: 1, y: 252.8}

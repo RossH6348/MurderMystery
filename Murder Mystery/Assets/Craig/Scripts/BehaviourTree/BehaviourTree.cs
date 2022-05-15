@@ -24,7 +24,8 @@ namespace ZekstersLab.BehaviourTree
 
         public NodeState Update()
         {
-            return root.Update();
+            treeState = root.Update();
+            return treeState;
         }
 
         public void SetRoot(BehaviourTreeBaseNode root)
@@ -40,6 +41,7 @@ namespace ZekstersLab.BehaviourTree
 
         public void Reset()
         {
+            treeState = NodeState.Ready;
             root.Reset();
         }
 

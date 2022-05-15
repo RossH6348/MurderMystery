@@ -35,6 +35,7 @@ public class AI_MoveTest : ActionNode
 
     protected override void OnStop()
     {
+        Debug.Log("AI Move Test - OnStop() - State: " + state.ToString() + " - moveState: " + moveState.ToString());
         //turn over! - if we haven't made it to our final space we need to stop where we are (closest grid location)
         if(moveState != NodeState.Success)
         {

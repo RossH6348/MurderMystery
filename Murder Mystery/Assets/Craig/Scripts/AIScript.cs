@@ -74,6 +74,7 @@ public class AIScript : CharacterScript
         if(myTree.treeState == NodeState.Success || myTree.treeState == NodeState.Failed)
         {
             turnSystem.takeupAction();
+            myTree.Reset();
         }
         else
         {
