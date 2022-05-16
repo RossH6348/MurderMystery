@@ -11,6 +11,7 @@ public class PlayerScript : CharacterScript
     //Access to each of the huds.
     [SerializeField] private GameObject GlobalScreen;
     [SerializeField] private GameObject ActionsScreen;
+    [SerializeField] private GameObject MovementsScreen;
 
     //Random text elements.
     [SerializeField] private Transform turnStart;
@@ -18,7 +19,7 @@ public class PlayerScript : CharacterScript
     //Text element for timer.
     [SerializeField] private Text timerText;
 
-    [SerializeField] private Camera playerCamera;
+    private Camera playerCamera;
 
     private GameObject selectedObject = null;
 
@@ -33,12 +34,12 @@ public class PlayerScript : CharacterScript
     public override void onTurnEnter()
     {
 
-        playerMove = false;
-
         hasRolled = false;
 
         //Open up the global screen. (Mostly the turn timer.)
         GlobalScreen.SetActive(true);
+
+        MovementsScreen.SetActive(false);
 
         //While we are at it, play a little intro stating it's now their turn.
         StartCoroutine(TurnStartIntro());
@@ -91,7 +92,7 @@ public class PlayerScript : CharacterScript
             }
 
             //They have rolled their dice, do logic based on whether they are wanting to move or not.
-            if (playerMove)
+            if (MovementsScreen.activeSelf)
             {
                 //They are wanting to move, do raycast to node stuff.
 
@@ -154,7 +155,7 @@ public class PlayerScript : CharacterScript
 
                 //Toggle between actions to movement and vice-versa.
                 ActionsScreen.SetActive(!ActionsScreen.activeSelf);
-                playerMove = !playerMove;
+                MovementsScreen.SetActive(!MovementsScreen.activeSelf);
 
                 //There turn is over, make sure to deselect everything.
                 if (selectedObject != null)
