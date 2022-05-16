@@ -22,6 +22,7 @@ public class PlayerScript : CharacterScript
 
     private GameObject selectedObject = null;
 
+    private bool hasRolled = false;
     private bool playerMove = false;
 
     private void Awake()
@@ -33,6 +34,8 @@ public class PlayerScript : CharacterScript
     {
 
         playerMove = false;
+
+        hasRolled = false;
 
         //Open up the global screen. (Mostly the turn timer.)
         GlobalScreen.SetActive(true);
@@ -77,12 +80,18 @@ public class PlayerScript : CharacterScript
                     }
                 }
             }
-
         }
         else
         {
+
+            if (!hasRolled)
+            {
+                hasRolled = true;
+                ActionsScreen.SetActive(true);
+            }
+
             //They have rolled their dice, do logic based on whether they are wanting to move or not.
-            if (playerMove || true)
+            if (playerMove)
             {
                 //They are wanting to move, do raycast to node stuff.
 
@@ -105,6 +114,7 @@ public class PlayerScript : CharacterScript
                         LaserInput input = selectedObject.GetComponent<LaserInput>();
                         if (input != null)
                             input.onLaserDeselected(this); //We will pass in our own CharacterScript so the object selected knows who have deselected.
+                        selectedObject = null;
                     }
 
                     if (laserSelected != null)
@@ -116,18 +126,49 @@ public class PlayerScript : CharacterScript
                     }
                 }
 
-                if (Input.GetMouseButton(0) && selectedObject != null)
+                if (selectedObject != null)
                 {
-                    LaserInput input = selectedObject.GetComponent<LaserInput>();
-                    if (input != null)
-                        input.onLaserClick(this);
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        LaserInput input = selectedObject.GetComponent<LaserInput>();
+                        if (input != null)
+                            input.onLaserClick(this, true);
+                    }else if(Input.GetMouseButtonUp(0)){
+                        LaserInput input = selectedObject.GetComponent<LaserInput>();
+                        if (input != null)
+                            input.onLaserClick(this, false);
+                    }
                 }
-
             }
             else
             {
                 //Do other stuff, such as whether they want to equip and stuff.
+
+
             }
+
+
+            //This key will toggle between whether the player wants to start moving, or do something else.
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+
+                //Toggle between actions to movement and vice-versa.
+                ActionsScreen.SetActive(!ActionsScreen.activeSelf);
+                playerMove = !playerMove;
+
+                //There turn is over, make sure to deselect everything.
+                if (selectedObject != null)
+                {
+                    LaserInput input = selectedObject.GetComponent<LaserInput>();
+                    if (input != null)
+                        input.onLaserDeselected(this); //We will pass in our own CharacterScript so the object selected knows who have deselected.
+                }
+
+                selectedObject = null;
+
+            }
+
+
         }
 
     }
@@ -137,6 +178,16 @@ public class PlayerScript : CharacterScript
         //Their turn have ended! Automatically close down everything, while cleaning up stuff.
         GlobalScreen.SetActive(false);
         ActionsScreen.SetActive(false);
+
+        //There turn is over, make sure to deselect everything.
+        if (selectedObject != null)
+        {
+            LaserInput input = selectedObject.GetComponent<LaserInput>();
+            if (input != null)
+                input.onLaserDeselected(this); //We will pass in our own CharacterScript so the object selected knows who have deselected.
+        }
+
+        selectedObject = null;
 
         base.onTurnExit(); //Go back to the main, which will handle removing unrolled dice for us.
 
@@ -179,6 +230,8 @@ public class PlayerScript : CharacterScript
         timerText.enabled = false;
         turnStart.localScale = Vector3.zero;
 
+        status = turnStatus.Action; //Just to stop their timer from going down during their intro animation.
+
         while(turnStart.localScale.x < 1.0f)
         {
             turnStart.localScale += new Vector3(Time.deltaTime, Time.deltaTime, Time.deltaTime) * 3.0f;
@@ -193,8 +246,7 @@ public class PlayerScript : CharacterScript
             yield return new WaitForEndOfFrame();
         }
 
-        //Now this intro animation have taken up some of the player's time, so let tell the turnsystem to recover that lost time.
-        turnSystem.turnTime += (5.0f / 3.0f); //The intro animation takes exactly 1.6 seconds to play out.
+        status = turnStatus.Play; //Okay they can now make a play.
 
         //At this point, display the turn timer.
         timerText.enabled = true;

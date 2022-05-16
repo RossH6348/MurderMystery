@@ -19,7 +19,7 @@ public class LaserInput : MonoBehaviour
     }
 
     //This function is called when the player clicks on the laser while selecting this object.
-    public virtual void onLaserClick(CharacterScript character)
+    public virtual void onLaserClick(CharacterScript character, bool clickState)
     {
 
     }

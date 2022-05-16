@@ -33,7 +33,6 @@ public class DiceScript : MonoBehaviour
         //And begin checking when the dice stops moving, and to prevent wasting time for their turn trying to roll, we will at least put them in an action state.
         //Without taking the dice roll as an actual action.
         StartCoroutine(RollingDice());
-
     }
 
     IEnumerator RollingDice()
@@ -63,16 +62,8 @@ public class DiceScript : MonoBehaviour
         //Wait two more seconds, before disabling the dice.
         yield return new WaitForSeconds(2.0f);
 
-        DisableDice();
-
-    }
-
-    public void DisableDice()
-    {
-        IgnoreHovering hover = GetComponent<IgnoreHovering>();
-        if (hover != null)
-            Destroy(hover);
         Destroy(gameObject);
+
     }
 
 }

@@ -21,7 +21,7 @@ public class NodeInput : LaserInput
                 currentPath[i].GetComponent<MeshRenderer>().enabled = false;
     }
 
-    public override void onLaserClick(CharacterScript character)
+    public override void onLaserClick(CharacterScript character, bool clickState)
     {
         //Okay, they clicked this node so let make them start moving to this node!
         character.MoveTo(transform.position);

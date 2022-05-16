@@ -82,6 +82,7 @@ public class VRPlayerScript : CharacterScript
                 LaserInput input = selectedObject.GetComponent<LaserInput>();
                 if(input != null)
                     input.onLaserDeselected(this); //We will pass in our own CharacterScript so the object selected knows who have deselected.
+                selectedObject = null;
             }
 
             if(laserSelected != null)
@@ -93,11 +94,20 @@ public class VRPlayerScript : CharacterScript
             }
         }
 
-        if (triggerAction.GetStateDown(SteamVR_Input_Sources.RightHand) && selectedObject != null)
+        if (selectedObject != null)
         {
-            LaserInput input = selectedObject.GetComponent<LaserInput>();
-            if (input != null)
-                input.onLaserClick(this);
+            if (triggerAction.GetStateDown(SteamVR_Input_Sources.RightHand))
+            {
+                LaserInput input = selectedObject.GetComponent<LaserInput>();
+                if (input != null)
+                    input.onLaserClick(this, true);
+            }
+            else if (triggerAction.GetStateUp(SteamVR_Input_Sources.RightHand))
+            {
+                LaserInput input = selectedObject.GetComponent<LaserInput>();
+                if (input != null)
+                    input.onLaserClick(this, false);
+            }
         }
     }
 
