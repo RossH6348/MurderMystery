@@ -50,7 +50,7 @@ public class AIScript : CharacterScript
         //sequence1.children.Add(log2);
 
         //var selector1 = ScriptableObject.CreateInstance<SelectorNode>();
-        //selector1.children.Add(invertNode);
+        //selector1.children.Add(log3);
         //selector1.children.Add(log4);
 
         //var sequence2 = ScriptableObject.CreateInstance<SequenceNode>();
@@ -73,6 +73,7 @@ public class AIScript : CharacterScript
         
         if(myTree.treeState == NodeState.Success || myTree.treeState == NodeState.Failed)
         {
+            Debug.Log("Tree State: " + myTree.treeState.ToString());
             turnSystem.takeupAction();
             myTree.Reset();
         }

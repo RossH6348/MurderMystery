@@ -18,7 +18,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7289039016853961365
 Transform:
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 048e4fa4c14f8ac46b79762944b187e2, type: 2}
-  - {fileID: 2100000, guid: e0c76d745fcb98d409d45c100088fe2e, type: 2}
+  - {fileID: 2100000, guid: 048e4fa4c14f8ac46b79762944b187e2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,6 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileScale: {x: 2, y: 2}
   materialTileScales:
+  - {x: 2, y: 2}
   - {x: 2, y: 2}
 --- !u!65 &5473147593849512151
 BoxCollider:
