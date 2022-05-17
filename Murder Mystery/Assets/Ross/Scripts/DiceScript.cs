@@ -22,11 +22,19 @@ public class DiceScript : MonoBehaviour
         for (int i = transform.childCount - 1; i > -1; i--)
             faces.Add(transform.GetChild(i));
     }
-
-    public void onEnterRoll()
+    
+    public void onPickup()
     {
         //Add an ignore hovering component, which effectively makes it so the player can't pick up the dice again.
         gameObject.AddComponent<IgnoreHovering>();
+    }
+
+    public void onEnterRoll()
+    {
+
+        //The player on the monitor may have picked up the dice, so check one more time.
+        if(gameObject.GetComponent<IgnoreHovering>() == null)
+            gameObject.AddComponent<IgnoreHovering>();
 
         rigid.constraints = RigidbodyConstraints.None; //Unfreeze the dice.
 
@@ -39,8 +47,7 @@ public class DiceScript : MonoBehaviour
     {
 
         roller.status = turnStatus.Action;
-
-        //Wait until the dice stop moving.
+        //Wait until the dice stop moving and not attached.
         while(!rigid.IsSleeping())
         {
             yield return new WaitForEndOfFrame();

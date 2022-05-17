@@ -14,9 +14,18 @@ public class VRPlayerScript : CharacterScript
     private GameObject laser;
     private GameObject selectedObject = null;
 
+    [SerializeField] private GameObject wristHUD;
 
     //VR Control scheme.
     public SteamVR_Action_Boolean triggerAction;
+
+    //Wrist HUD control scheme.
+    public SteamVR_Action_Boolean wristToggle;
+    public SteamVR_Action_Boolean wristLeft;
+    public SteamVR_Action_Boolean wristRight;
+
+    private int wristSelect = -1;
+    private List<GameObject> wristOptions = new List<GameObject>();
 
 
     // Start is called before the first frame update
@@ -33,8 +42,16 @@ public class VRPlayerScript : CharacterScript
 
         laser.SetActive(false);
 
-        //This will be used to check if the player is holding something, so we don't do the laser thing.
-        attachmentPoint = pointer.Find("ObjectAttachmentPoint");
+        Transform wristBackground = wristHUD.transform.GetChild(0);
+        for (int i = 0; i < wristBackground.childCount; i++)
+            wristOptions.Add(wristBackground.GetChild(i).gameObject);
+
+        if(wristOptions.Count > 0)
+        {
+            wristSelect = 0;
+            wristOptions[0].SetActive(true);
+        }
+
     }
 
     public override void onTurnEnter()
@@ -109,6 +126,27 @@ public class VRPlayerScript : CharacterScript
                     input.onLaserClick(this, false);
             }
         }
+
+        if (wristSelect > -1)
+        {
+            if (wristToggle.GetStateDown(SteamVR_Input_Sources.LeftHand))
+                wristHUD.SetActive(!wristHUD.activeSelf);
+
+            if (wristLeft.GetStateDown(SteamVR_Input_Sources.LeftHand))
+            {
+                wristOptions[wristSelect].SetActive(false);
+                wristSelect = (wristSelect - 1 < 0 ? wristOptions.Count - 1 : wristSelect - 1);
+                wristOptions[wristSelect].SetActive(true);
+            }
+
+            if (wristRight.GetStateDown(SteamVR_Input_Sources.LeftHand))
+            {
+                wristOptions[wristSelect].SetActive(false);
+                wristSelect = (wristSelect + 1 >= wristOptions.Count ? 0 : wristSelect + 1);
+                wristOptions[wristSelect].SetActive(true);
+            }
+        }
+
     }
 
     public override void onTurnExit()
@@ -126,6 +164,9 @@ public class VRPlayerScript : CharacterScript
 
         //Turn off their laser as well.
         laser.SetActive(false);
+
+        //Close down their wrist hud.
+        wristHUD.SetActive(false);
 
         base.onTurnExit(); //Go back to the main, which will handle removing unrolled dice for us.
 

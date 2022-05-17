@@ -29,6 +29,7 @@ public class DisplayInventory : MonoBehaviour
             var obj = Instantiate(inventory.Bag[i].item.prefab, Vector3.zero, Quaternion.identity, transform);
             obj.GetComponent<RectTransform>().localPosition = GetDisplayPosition(i);
             obj.GetComponentInChildren<TextMeshProUGUI>().text = inventory.Bag[i].amount.ToString("n0");
+            obj.transform.localRotation = Quaternion.identity; //This fixes weird shearing rotation for the VR's wrist hud.
             itemsDisplayed.Add(inventory.Bag[i], obj);
         }
     }
@@ -58,6 +59,7 @@ public class DisplayInventory : MonoBehaviour
                 var obj = Instantiate(inventory.Bag[i].item.prefab, Vector3.zero, Quaternion.identity, transform);
                 obj.GetComponent<RectTransform>().localPosition = GetDisplayPosition(i);
                 obj.GetComponentInChildren<TextMeshProUGUI>().text = inventory.Bag[i].amount.ToString("n0");
+                obj.transform.localRotation = Quaternion.identity; //This fixes weird shearing rotation for the VR's wrist hud.
                 itemsDisplayed.Add(inventory.Bag[i], obj);
             }
         }
