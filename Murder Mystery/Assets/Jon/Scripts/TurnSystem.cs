@@ -60,6 +60,9 @@ public class TurnSystem : MonoBehaviour
         else
             remainingActions = 1;
 
+        //Set their amount of roll to 0.
+        character.maxRoll = 0;
+
         //Update status to play, so their controls can be activated.
         character.status = turnStatus.Play;
 
