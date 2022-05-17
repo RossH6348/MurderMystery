@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2406564525704139555}
   - component: {fileID: 468694209234610153}
   - component: {fileID: 2126225236517553725}
+  - component: {fileID: -7421413594092925655}
   m_Layer: 0
   m_Name: GamesRoom Floor
   m_TagString: Untagged
@@ -97,3 +98,16 @@ MonoBehaviour:
   tileScale: {x: 1, y: 1}
   materialTileScales:
   - {x: 12, y: 18}
+--- !u!65 &-7421413594092925655
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2126225236517553724}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.019999998, y: 0.019999994, z: 0.019999996}
+  m_Center: {x: 0, y: 0, z: 0}

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8546047342478759603}
   - component: {fileID: 5871954555202101881}
   - component: {fileID: 5097171182908570941}
+  - component: {fileID: 7848409615822935762}
   m_Layer: 0
   m_Name: GamesRoom_WallW1
   m_TagString: Untagged
@@ -99,3 +100,16 @@ MonoBehaviour:
   materialTileScales:
   - {x: 12, y: 2.5}
   - {x: 2, y: 2}
+--- !u!65 &7848409615822935762
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5367626645142324140}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.0899994, y: 2.4999995, z: 2}
+  m_Center: {x: 0.5449998, y: 0.24999982, z: 0}
