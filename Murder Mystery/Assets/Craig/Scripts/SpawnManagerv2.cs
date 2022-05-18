@@ -66,6 +66,7 @@ public class SpawnManagerv2 : MonoBehaviour
             
             CharacterScript characterScript;
             AIScript aIScript;
+            PlayerColourizer playerColourizer;
             if (tempCharacter.TryGetComponent<CharacterScript>(out characterScript))
             {
                 characterScript.turnSystem = GameSystemv2.Instance.TurnSystem;
@@ -74,6 +75,7 @@ public class SpawnManagerv2 : MonoBehaviour
                 if(assassinAssigned == false)
                 {
                     characterScript.role = Role.Assassin;
+                    assassinAssigned = true;
                 }
                 else
                 {
@@ -86,7 +88,11 @@ public class SpawnManagerv2 : MonoBehaviour
             {
                 aIScript.initAI();
             }
-            tempCharacter.GetComponentInChildren<PlayerColourizer>().SetMaterial(playerCharacterMaterials[characters.Count]);
+            if(tempCharacter.TryGetComponent<PlayerColourizer>(out playerColourizer))
+            {
+                playerColourizer.SetMaterial(playerCharacterMaterials[characters.Count]);
+            }
+            
             characters.Add(tempCharacter);
         }
 

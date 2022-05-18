@@ -17,8 +17,12 @@ public class GameSystemv2 : MonoBehaviour
     [SerializeField] private GameObject aiPlayerPrefab;
     [SerializeField] private int numberOfAIPlayers = 3;
 
+    [SerializeField] private GameObject tasklistParent;
+
     private List<GameObject> characterPrefabs = new List<GameObject>();
     private List<GameObject> characters = new List<GameObject>();
+
+
 
     public GameStates NextState
     {
@@ -42,6 +46,7 @@ public class GameSystemv2 : MonoBehaviour
     public GridSystem GridSystem { get => gridSystem;  }
     public List<GameObject> Characters { get => characters; }
     public GameStates CurrentState { get => currentState; }
+    public GameObject TasklistParent { get => tasklistParent; }
 
 
 

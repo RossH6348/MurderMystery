@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnPointGizmo : MonoBehaviour
+public class InterestingPointGizmo : MonoBehaviour
 {
+    [SerializeField] Color colour = Color.cyan;
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.cyan;
+        Gizmos.color = colour;
         Gizmos.DrawSphere(transform.position, 0.3f);
     }
 }

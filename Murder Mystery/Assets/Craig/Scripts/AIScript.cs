@@ -10,25 +10,36 @@ public class AIScript : CharacterScript
 
     [SerializeField] private Transform targetTransform;
 
+    private List<Task> tasks = new List<Task>();
 
 
     public void initAI()
     {
+        tasks.AddRange(GameSystemv2.Instance.TasklistParent.GetComponentsInChildren<Task>());
+        if (tasks.Count > 0) tasks.RemoveAt(0);
+
         myTree = ScriptableObject.CreateInstance<BehaviourTree>();
 
 
         myTree.SetData("GridSystem", gridSystem);
+        myTree.SetData("TaskList", tasks);
 
 
         var diceRoll = ScriptableObject.CreateInstance<AI_Roll_Die>();
-        var moveTest = ScriptableObject.CreateInstance<AI_MoveTest>();
-        moveTest.moveSpeed = 0.5f;
+        var moveToTarget = ScriptableObject.CreateInstance<AI_MoveTest>();
+        var taskPicker = ScriptableObject.CreateInstance<AI_PickTask>();
+
+        moveToTarget.moveSpeed = 0.5f;
 
         var moveSequence = ScriptableObject.CreateInstance<SequenceNode>();
         moveSequence.children.Add(diceRoll);
-        moveSequence.children.Add(moveTest);
+        moveSequence.children.Add(moveToTarget);
 
-        myTree.SetRoot(moveSequence);
+        var gotoNextTask = ScriptableObject.CreateInstance<SequenceNode>();
+        gotoNextTask.children.Add(taskPicker);
+        gotoNextTask.children.Add(moveSequence);
+
+        myTree.SetRoot(gotoNextTask);
 
         //var log1 = ScriptableObject.CreateInstance<DebugLogNode>();
         //var log2 = ScriptableObject.CreateInstance<DebugLogNode>();
@@ -83,7 +94,7 @@ public class AIScript : CharacterScript
             targetPos = targetTransform.position;
             myTree.SetData("CurrentTransform", transform);
             myTree.SetData("CurrentPosition", transform.position);
-            myTree.SetData("TargetPosition", targetPos);
+            //myTree.SetData("TargetPosition", targetPos);
             
             myTree.Update();
 
