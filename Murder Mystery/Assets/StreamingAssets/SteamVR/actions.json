@@ -93,6 +93,10 @@
     {
       "name": "/actions/wristhud/in/wristright",
       "type": "boolean"
+    },
+    {
+      "name": "/actions/wristhud/out/Haptic",
+      "type": "vibration"
     }
   ],
   "action_sets": [

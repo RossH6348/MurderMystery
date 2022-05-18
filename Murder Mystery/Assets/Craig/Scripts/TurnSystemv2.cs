@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurnSystem : MonoBehaviour
+public class TurnSystemv2 : MonoBehaviour
 {
-    private static TurnSystem instance;
     //public List<GameObject> players = new List<GameObject>();
+    private static TurnSystemv2 instance;
 
     private int currentTurn = 0;
 
@@ -16,16 +16,15 @@ public class TurnSystem : MonoBehaviour
 
     [SerializeField] private GameObject dicePrefab; //The dice prefab to give to other players.
 
-    public static TurnSystem Instance
+    public static TurnSystemv2 Instance
     {
         get
         {
-            if (instance == null) instance = FindObjectOfType<TurnSystem>();
+            if (instance == null) instance = FindObjectOfType<TurnSystemv2>();
             return instance;
         }
     }
 
-    // Start is called before the first frame update
     public void StartTurnSystem()
     {
         currentTurn = 0;
@@ -35,7 +34,9 @@ public class TurnSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //do not execute if we are not in Game Play mode
         if (GameSystemv2.Instance.CurrentState != GameStates.GamePlay) return;
+
         CharacterScript character = GameSystemv2.Instance.Characters[currentTurn].GetComponent<CharacterScript>();
         if (turnTime > 0.0f && remainingActions > 0)
         {

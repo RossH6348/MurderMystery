@@ -23,7 +23,7 @@ public class CharacterScript : MonoBehaviour
     public string characterName = "Matey";
 
     //Assassin's target.
-    public string target = "";
+    public GameObject target;
 
     //ROLE AND STATUS OF THIS PARTICULAR CHARACTER.
     public Role role = Role.Suspect;

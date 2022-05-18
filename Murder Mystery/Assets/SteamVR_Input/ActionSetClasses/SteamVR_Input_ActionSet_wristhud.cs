@@ -40,5 +40,13 @@ namespace Valve.VR
                 return SteamVR_Actions.wristhud_wristright;
             }
         }
+        
+        public virtual SteamVR_Action_Vibration Haptic
+        {
+            get
+            {
+                return SteamVR_Actions.wristhud_Haptic;
+            }
+        }
     }
 }

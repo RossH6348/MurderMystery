@@ -11,11 +11,12 @@ public class AIScript : CharacterScript
     [SerializeField] private Transform targetTransform;
 
 
-    private void Awake()
+
+    public void initAI()
     {
         myTree = ScriptableObject.CreateInstance<BehaviourTree>();
 
-        
+
         myTree.SetData("GridSystem", gridSystem);
 
 
@@ -58,12 +59,11 @@ public class AIScript : CharacterScript
         //sequence2.children.Add(selector1);
 
         //myTree.SetRoot(sequence2);
-
-
-
     }
+
     public override void onTurnEnter()
     {
+        targetTransform = transform;
         myTree.SetData("TurnOver", (bool)false);
         myTree.Reset();
     }
