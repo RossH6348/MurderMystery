@@ -126,11 +126,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3785462965012006217, guid: 565641a7b2e584845a10d14ba1d4b9ae, type: 3}
       propertyPath: hapticAction.actionPath
-      value: /actions/wristhud/out/Haptic
+      value: /actions/default/out/Haptic
       objectReference: {fileID: 0}
     - target: {fileID: 3785462965012219351, guid: 565641a7b2e584845a10d14ba1d4b9ae, type: 3}
       propertyPath: hapticAction.actionPath
-      value: /actions/wristhud/out/Haptic
+      value: /actions/default/out/Haptic
       objectReference: {fileID: 0}
     - target: {fileID: 3785462965977265807, guid: 565641a7b2e584845a10d14ba1d4b9ae, type: 3}
       propertyPath: wristHUD
