@@ -9,8 +9,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 325169801396718169, guid: ff32df431782c53438bf6b1a29257bfe, type: 3}
       propertyPath: m_Name
-      value: Image Variant
+      value: Image Variant Variant 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4761664162768512849, guid: ff32df431782c53438bf6b1a29257bfe, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4761664162768512849, guid: ff32df431782c53438bf6b1a29257bfe, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 98f94e2f88373eb4fb53bbe9c7d1af71, type: 3}
     - target: {fileID: 8701045798780773713, guid: ff32df431782c53438bf6b1a29257bfe, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
