@@ -83,7 +83,7 @@
       "requirement": "optional"
     },
     {
-      "name": "/actions/wristhud/in/togglewrist",
+      "name": "/actions/wristhud/in/wristtoggle",
       "type": "boolean"
     },
     {
@@ -95,8 +95,8 @@
       "type": "boolean"
     },
     {
-      "name": "/actions/wristhud/out/Haptic",
-      "type": "vibration"
+      "name": "/actions/wristhud/in/wristconfirm",
+      "type": "boolean"
     }
   ],
   "action_sets": [

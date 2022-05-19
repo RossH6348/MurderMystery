@@ -55,13 +55,13 @@ namespace Valve.VR
         
         private static SteamVR_Action_Pose p_mixedreality_ExternalCamera;
         
-        private static SteamVR_Action_Boolean p_wristhud_togglewrist;
+        private static SteamVR_Action_Boolean p_wristhud_wristtoggle;
         
         private static SteamVR_Action_Boolean p_wristhud_wristleft;
         
         private static SteamVR_Action_Boolean p_wristhud_wristright;
         
-        private static SteamVR_Action_Vibration p_wristhud_Haptic;
+        private static SteamVR_Action_Boolean p_wristhud_wristconfirm;
         
         public static SteamVR_Action_Boolean default_InteractUI
         {
@@ -215,11 +215,11 @@ namespace Valve.VR
             }
         }
         
-        public static SteamVR_Action_Boolean wristhud_togglewrist
+        public static SteamVR_Action_Boolean wristhud_wristtoggle
         {
             get
             {
-                return SteamVR_Actions.p_wristhud_togglewrist.GetCopy<SteamVR_Action_Boolean>();
+                return SteamVR_Actions.p_wristhud_wristtoggle.GetCopy<SteamVR_Action_Boolean>();
             }
         }
         
@@ -239,11 +239,11 @@ namespace Valve.VR
             }
         }
         
-        public static SteamVR_Action_Vibration wristhud_Haptic
+        public static SteamVR_Action_Boolean wristhud_wristconfirm
         {
             get
             {
-                return SteamVR_Actions.p_wristhud_Haptic.GetCopy<SteamVR_Action_Vibration>();
+                return SteamVR_Actions.p_wristhud_wristconfirm.GetCopy<SteamVR_Action_Boolean>();
             }
         }
         
@@ -269,10 +269,10 @@ namespace Valve.VR
                     SteamVR_Actions.buggy_Brake,
                     SteamVR_Actions.buggy_Reset,
                     SteamVR_Actions.mixedreality_ExternalCamera,
-                    SteamVR_Actions.wristhud_togglewrist,
+                    SteamVR_Actions.wristhud_wristtoggle,
                     SteamVR_Actions.wristhud_wristleft,
                     SteamVR_Actions.wristhud_wristright,
-                    SteamVR_Actions.wristhud_Haptic};
+                    SteamVR_Actions.wristhud_wristconfirm};
             Valve.VR.SteamVR_Input.actionsIn = new Valve.VR.ISteamVR_Action_In[] {
                     SteamVR_Actions.default_InteractUI,
                     SteamVR_Actions.default_Teleport,
@@ -292,15 +292,14 @@ namespace Valve.VR
                     SteamVR_Actions.buggy_Brake,
                     SteamVR_Actions.buggy_Reset,
                     SteamVR_Actions.mixedreality_ExternalCamera,
-                    SteamVR_Actions.wristhud_togglewrist,
+                    SteamVR_Actions.wristhud_wristtoggle,
                     SteamVR_Actions.wristhud_wristleft,
-                    SteamVR_Actions.wristhud_wristright};
+                    SteamVR_Actions.wristhud_wristright,
+                    SteamVR_Actions.wristhud_wristconfirm};
             Valve.VR.SteamVR_Input.actionsOut = new Valve.VR.ISteamVR_Action_Out[] {
-                    SteamVR_Actions.default_Haptic,
-                    SteamVR_Actions.wristhud_Haptic};
+                    SteamVR_Actions.default_Haptic};
             Valve.VR.SteamVR_Input.actionsVibration = new Valve.VR.SteamVR_Action_Vibration[] {
-                    SteamVR_Actions.default_Haptic,
-                    SteamVR_Actions.wristhud_Haptic};
+                    SteamVR_Actions.default_Haptic};
             Valve.VR.SteamVR_Input.actionsPose = new Valve.VR.SteamVR_Action_Pose[] {
                     SteamVR_Actions.default_Pose,
                     SteamVR_Actions.mixedreality_ExternalCamera};
@@ -315,9 +314,10 @@ namespace Valve.VR
                     SteamVR_Actions.platformer_Jump,
                     SteamVR_Actions.buggy_Brake,
                     SteamVR_Actions.buggy_Reset,
-                    SteamVR_Actions.wristhud_togglewrist,
+                    SteamVR_Actions.wristhud_wristtoggle,
                     SteamVR_Actions.wristhud_wristleft,
-                    SteamVR_Actions.wristhud_wristright};
+                    SteamVR_Actions.wristhud_wristright,
+                    SteamVR_Actions.wristhud_wristconfirm};
             Valve.VR.SteamVR_Input.actionsSingle = new Valve.VR.SteamVR_Action_Single[] {
                     SteamVR_Actions.default_Squeeze,
                     SteamVR_Actions.buggy_Throttle};
@@ -343,9 +343,10 @@ namespace Valve.VR
                     SteamVR_Actions.buggy_Throttle,
                     SteamVR_Actions.buggy_Brake,
                     SteamVR_Actions.buggy_Reset,
-                    SteamVR_Actions.wristhud_togglewrist,
+                    SteamVR_Actions.wristhud_wristtoggle,
                     SteamVR_Actions.wristhud_wristleft,
-                    SteamVR_Actions.wristhud_wristright};
+                    SteamVR_Actions.wristhud_wristright,
+                    SteamVR_Actions.wristhud_wristconfirm};
         }
         
         private static void PreInitActions()
@@ -369,10 +370,10 @@ namespace Valve.VR
             SteamVR_Actions.p_buggy_Brake = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/buggy/in/Brake")));
             SteamVR_Actions.p_buggy_Reset = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/buggy/in/Reset")));
             SteamVR_Actions.p_mixedreality_ExternalCamera = ((SteamVR_Action_Pose)(SteamVR_Action.Create<SteamVR_Action_Pose>("/actions/mixedreality/in/ExternalCamera")));
-            SteamVR_Actions.p_wristhud_togglewrist = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/wristhud/in/togglewrist")));
+            SteamVR_Actions.p_wristhud_wristtoggle = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/wristhud/in/wristtoggle")));
             SteamVR_Actions.p_wristhud_wristleft = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/wristhud/in/wristleft")));
             SteamVR_Actions.p_wristhud_wristright = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/wristhud/in/wristright")));
-            SteamVR_Actions.p_wristhud_Haptic = ((SteamVR_Action_Vibration)(SteamVR_Action.Create<SteamVR_Action_Vibration>("/actions/wristhud/out/Haptic")));
+            SteamVR_Actions.p_wristhud_wristconfirm = ((SteamVR_Action_Boolean)(SteamVR_Action.Create<SteamVR_Action_Boolean>("/actions/wristhud/in/wristconfirm")));
         }
     }
 }

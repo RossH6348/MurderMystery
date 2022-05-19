@@ -20,9 +20,11 @@ public class VRPlayerScript : CharacterScript
     public SteamVR_Action_Boolean triggerAction;
 
     //Wrist HUD control scheme.
+    public SteamVR_ActionSet wristSet;
     public SteamVR_Action_Boolean wristToggle;
     public SteamVR_Action_Boolean wristLeft;
     public SteamVR_Action_Boolean wristRight;
+    public SteamVR_Action_Boolean wristConfirm;
 
     private int wristSelect = -1;
     private List<GameObject> wristOptions = new List<GameObject>();
@@ -42,16 +44,22 @@ public class VRPlayerScript : CharacterScript
 
         laser.SetActive(false);
 
+        //This will automatically find all children and turn it into a scrollable list.
+        //This makes adding new stuff to the menu as easy as just dragging it under the background hierarchy.
         Transform wristBackground = wristHUD.transform.GetChild(0);
         for (int i = 0; i < wristBackground.childCount; i++)
             wristOptions.Add(wristBackground.GetChild(i).gameObject);
 
+        //If any is found, set wristSelect to the first element and enable the first element.
         if(wristOptions.Count > 0)
         {
             wristSelect = 0;
             wristOptions[0].SetActive(true);
         }
 
+        //Set the left controller to use the custom wrist mapping instead.
+        //Setting priority to a ludicrous number, so that it actually overrides the default binding. 
+        wristSet.Activate(SteamVR_Input_Sources.LeftHand, 999);
     }
 
     public override void onTurnEnter()
@@ -127,23 +135,38 @@ public class VRPlayerScript : CharacterScript
             }
         }
 
+        //Only enable wrist HUD controls, if there is elements within the HUD.
         if (wristSelect > -1)
         {
+
+            //This toggles whether to view the wrist or not.
             if (wristToggle.GetStateDown(SteamVR_Input_Sources.LeftHand))
                 wristHUD.SetActive(!wristHUD.activeSelf);
 
-            if (wristLeft.GetStateDown(SteamVR_Input_Sources.LeftHand))
+            //Only allow scrolling and clicking, if the wristHUD is visible.
+            if (wristHUD.activeSelf)
             {
-                wristOptions[wristSelect].SetActive(false);
-                wristSelect = (wristSelect - 1 < 0 ? wristOptions.Count - 1 : wristSelect - 1);
-                wristOptions[wristSelect].SetActive(true);
-            }
+                if (wristLeft.GetStateDown(SteamVR_Input_Sources.LeftHand))
+                {
+                    //Scroll to the left.
+                    wristOptions[wristSelect].SetActive(false);
+                    wristSelect = (wristSelect - 1 < 0 ? wristOptions.Count - 1 : wristSelect - 1);
+                    wristOptions[wristSelect].SetActive(true);
+                }
 
-            if (wristRight.GetStateDown(SteamVR_Input_Sources.LeftHand))
-            {
-                wristOptions[wristSelect].SetActive(false);
-                wristSelect = (wristSelect + 1 >= wristOptions.Count ? 0 : wristSelect + 1);
-                wristOptions[wristSelect].SetActive(true);
+                if (wristRight.GetStateDown(SteamVR_Input_Sources.LeftHand))
+                {
+                    //Scroll to the right.
+                    wristOptions[wristSelect].SetActive(false);
+                    wristSelect = (wristSelect + 1 >= wristOptions.Count ? 0 : wristSelect + 1);
+                    wristOptions[wristSelect].SetActive(true);
+                }
+
+                if (wristConfirm.GetStateDown(SteamVR_Input_Sources.LeftHand))
+                {
+                    //Attempt to see if their is a script attached to this element that does stuff.
+
+                }
             }
         }
 

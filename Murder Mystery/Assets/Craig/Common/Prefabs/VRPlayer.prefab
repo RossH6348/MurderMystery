@@ -529,6 +529,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5822941176180671649, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822941176180671663, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 8400000, guid: e54c14d355fdd874a899824068668e34, type: 2}
+    - target: {fileID: 5822941176288197952, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
+      propertyPath: wristLeft.actionPath
+      value: /actions/wristhud/in/wristleft
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822941176288197952, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
+      propertyPath: wristRight.actionPath
+      value: /actions/wristhud/in/wristright
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822941176288197952, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
+      propertyPath: wristSet.actionSetPath
+      value: /actions/wristhud
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822941176288197952, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
+      propertyPath: wristToggle.actionPath
+      value: /actions/wristhud/in/wristtoggle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822941176288197952, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
+      propertyPath: wristConfirm.actionPath
+      value: /actions/wristhud/in/wristconfirm
+      objectReference: {fileID: 0}
     - target: {fileID: 5822941177325853924, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
       propertyPath: m_Name
       value: VRPlayer
@@ -584,6 +612,14 @@ PrefabInstance:
     - target: {fileID: 5822941177327880070, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 63
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822941178125494666, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7096086751542845614, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7225907563225648075, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
       propertyPath: m_Size.x

@@ -17,11 +17,11 @@ namespace Valve.VR
     public class SteamVR_Input_ActionSet_wristhud : Valve.VR.SteamVR_ActionSet
     {
         
-        public virtual SteamVR_Action_Boolean togglewrist
+        public virtual SteamVR_Action_Boolean wristtoggle
         {
             get
             {
-                return SteamVR_Actions.wristhud_togglewrist;
+                return SteamVR_Actions.wristhud_wristtoggle;
             }
         }
         
@@ -41,11 +41,11 @@ namespace Valve.VR
             }
         }
         
-        public virtual SteamVR_Action_Vibration Haptic
+        public virtual SteamVR_Action_Boolean wristconfirm
         {
             get
             {
-                return SteamVR_Actions.wristhud_Haptic;
+                return SteamVR_Actions.wristhud_wristconfirm;
             }
         }
     }
