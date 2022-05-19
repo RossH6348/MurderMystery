@@ -9,6 +9,7 @@ public class Task : MonoBehaviour
 
     public bool DoTask()
     {
+        if (requiresItem) return false;
         return Random.Range((int)0, (int)2) == 0 ? false : true;
     }
 
