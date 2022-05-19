@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 167316271}
   - component: {fileID: 167316272}
+  - component: {fileID: 330304419779505866}
   m_Layer: 0
   m_Name: Hallway Task 1
   m_TagString: Untagged
@@ -44,6 +45,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colour: {r: 1, g: 0.74655265, b: 0, a: 1}
+--- !u!114 &330304419779505866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167316270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e05c720ff0faa4e8087c57a03e9713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiresItem: 0
 --- !u!1 &800462796
 GameObject:
   m_ObjectHideFlags: 0
@@ -54,6 +68,7 @@ GameObject:
   m_Component:
   - component: {fileID: 800462797}
   - component: {fileID: 800462798}
+  - component: {fileID: 5329366230624672609}
   m_Layer: 0
   m_Name: Office Task
   m_TagString: Untagged
@@ -88,6 +103,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colour: {r: 1, g: 0.74655265, b: 0, a: 1}
+--- !u!114 &5329366230624672609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800462796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e05c720ff0faa4e8087c57a03e9713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiresItem: 0
 --- !u!1 &867330096
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,6 +161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1419299044}
   - component: {fileID: 1419299045}
+  - component: {fileID: 8728137491744838736}
   m_Layer: 0
   m_Name: Hallway Task 2
   m_TagString: Untagged
@@ -167,6 +196,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colour: {r: 1, g: 0.74655265, b: 0, a: 1}
+--- !u!114 &8728137491744838736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419299043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e05c720ff0faa4e8087c57a03e9713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiresItem: 0
 --- !u!1 &1426525566
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,6 +219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1426525567}
   - component: {fileID: 1426525568}
+  - component: {fileID: 6813059214369478489}
   m_Layer: 0
   m_Name: Games Room Task 1
   m_TagString: Untagged
@@ -211,6 +254,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colour: {r: 1, g: 0.74655265, b: 0, a: 1}
+--- !u!114 &6813059214369478489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426525566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e05c720ff0faa4e8087c57a03e9713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiresItem: 0
 --- !u!1 &1838927946
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,6 +277,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1838927947}
   - component: {fileID: 1838927948}
+  - component: {fileID: 5049355659496911368}
   m_Layer: 0
   m_Name: Games Room Task 2
   m_TagString: Untagged
@@ -255,6 +312,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colour: {r: 1, g: 0.74655265, b: 0, a: 1}
+--- !u!114 &5049355659496911368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838927946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e05c720ff0faa4e8087c57a03e9713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiresItem: 0
 --- !u!1 &4175443340498884618
 GameObject:
   m_ObjectHideFlags: 0
