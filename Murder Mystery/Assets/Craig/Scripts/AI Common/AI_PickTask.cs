@@ -29,7 +29,9 @@ public class AI_PickTask : ActionNode
         index = Random.Range((int)0, tasks.Count);
         myTree.SetData("TaskIndex", index);
         myTree.SetData("TargetPosition", tasks[index].GetPosition());
-
+        Debug.Log("AI Picked Task: " + tasks[index].ToString());
+        Debug.Log("Task Location: " + tasks[index].GetPosition().ToString());
+        
         return NodeState.Success;
     }
 

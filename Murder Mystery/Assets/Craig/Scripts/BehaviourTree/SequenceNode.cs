@@ -19,7 +19,7 @@ namespace ZekstersLab.BehaviourTree
         private int currentChild = 0;
         public override void Pause()
         {
-            throw new System.NotImplementedException();
+            //Do nothing
         }
 
         protected override void OnStart()

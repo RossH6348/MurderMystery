@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ZekstersLab.BehaviourTree;
-public class AI_MoveTest : ActionNode
+public class AI_MoveToTarget : ActionNode
 {
     private GridSystem gridSystem;
     private Transform myTransform;
@@ -81,6 +81,7 @@ public class AI_MoveTest : ActionNode
 
             case NodeState.Running:
                 myTree.SetData("Position", myTransform.position);
+                //Debug.Log("MoveToTarget: myTransformPosition: " + myTransform.position.ToString());
                 //coroutine is running, here we will do a check to make sure this is not locked up / running over, as well as check if the turn is over
                 runningTime += Time.deltaTime;
                 if((runningTime >= movementTimeout) || (true == (bool)myTree.GetData("TurnOver"))) moveState = NodeState.Failed;

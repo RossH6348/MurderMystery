@@ -26,7 +26,7 @@ public class AIScript : CharacterScript
 
 
         var diceRoll = ScriptableObject.CreateInstance<AI_Roll_Die>();
-        var moveToTarget = ScriptableObject.CreateInstance<AI_MoveTest>();
+        var moveToTarget = ScriptableObject.CreateInstance<AI_MoveToTarget>();
         var taskPicker = ScriptableObject.CreateInstance<AI_PickTask>();
 
         moveToTarget.moveSpeed = 0.5f;
@@ -35,9 +35,12 @@ public class AIScript : CharacterScript
         moveSequence.children.Add(diceRoll);
         moveSequence.children.Add(moveToTarget);
 
+        var repeatUntilAtTarget = ScriptableObject.CreateInstance<AI_RepeatUntillAtTarget>();
+        repeatUntilAtTarget.child = moveSequence;
+
         var gotoNextTask = ScriptableObject.CreateInstance<SequenceNode>();
         gotoNextTask.children.Add(taskPicker);
-        gotoNextTask.children.Add(moveSequence);
+        gotoNextTask.children.Add(repeatUntilAtTarget);
 
         myTree.SetRoot(gotoNextTask);
 
