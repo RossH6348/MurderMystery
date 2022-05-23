@@ -39,8 +39,8 @@ public class AI_MoveToTarget : ActionNode
         //turn over! - if we haven't made it to our final space we need to stop where we are (closest grid location)
         if(moveState != NodeState.Success)
         {
-            Helpers.Instance.StopCoroutine(movingCoroutine);
-
+            if(movingCoroutine != null) Helpers.Instance.StopCoroutine(movingCoroutine);
+            movingCoroutine = null;
             //force to move instantly to closest grid point --> not pretty but we are out of time!
             Node gridNode = gridSystem.getNodeAtPos(myTransform.position);
             myTransform.position = gridNode.position;
@@ -64,7 +64,7 @@ public class AI_MoveToTarget : ActionNode
                 path = gridSystem.findPath(myTransform.position, targetPosition);
                 if (path == null) //no path = already there!
                 {
-                    moveState = NodeState.Success; //must set this first as it is checked in OnStop()
+                    moveState = NodeState.Failed; //must set this first as it is checked in OnStop()
                     return moveState;
                 }
                 //shorten path to dice roll

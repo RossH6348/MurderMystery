@@ -11,12 +11,11 @@ public class AIScript : CharacterScript
     [SerializeField] private Transform targetTransform;
 
     private List<Task> tasks = new List<Task>();
-
+    private bool takeUpAction = false;
 
     public void initAI()
     {
         tasks.AddRange(GameSystemv2.Instance.TasklistParent.GetComponentsInChildren<Task>());
-        if (tasks.Count > 0) tasks.RemoveAt(0);
 
         myTree = ScriptableObject.CreateInstance<BehaviourTree>();
 
@@ -38,11 +37,14 @@ public class AIScript : CharacterScript
         var repeatUntilAtTarget = ScriptableObject.CreateInstance<AI_RepeatUntillAtTarget>();
         repeatUntilAtTarget.child = moveSequence;
 
-        var gotoNextTask = ScriptableObject.CreateInstance<SequenceNode>();
-        gotoNextTask.children.Add(taskPicker);
-        gotoNextTask.children.Add(repeatUntilAtTarget);
+        var doTask = ScriptableObject.CreateInstance<AI_DoTask>();
 
-        myTree.SetRoot(gotoNextTask);
+        var gotoAndDoNextTask = ScriptableObject.CreateInstance<SequenceNode>();
+        gotoAndDoNextTask.children.Add(taskPicker);
+        gotoAndDoNextTask.children.Add(repeatUntilAtTarget);
+        gotoAndDoNextTask.children.Add(doTask);
+
+        myTree.SetRoot(gotoAndDoNextTask);
 
         //var log1 = ScriptableObject.CreateInstance<DebugLogNode>();
         //var log2 = ScriptableObject.CreateInstance<DebugLogNode>();
@@ -84,8 +86,8 @@ public class AIScript : CharacterScript
 
     public override void onTurnTick()
     {
-        
-        if(myTree.treeState == NodeState.Success || myTree.treeState == NodeState.Failed)
+
+        if (myTree.treeState == NodeState.Success || myTree.treeState == NodeState.Failed)
         {
             Debug.Log("Tree State: " + myTree.treeState.ToString());
             turnSystem.takeupAction();
@@ -93,14 +95,18 @@ public class AIScript : CharacterScript
         }
         else
         {
-            
+            myTree.SetData("TakeUpAction", (bool)false);
             targetPos = targetTransform.position;
             myTree.SetData("CurrentTransform", transform);
             myTree.SetData("CurrentPosition", transform.position);
+            myTree.SetData("TakeUpAction", takeUpAction);
             //myTree.SetData("TargetPosition", targetPos);
             
-            myTree.Update();
-
+            
+            if(myTree.Update() == NodeState.Running)
+            {
+                if((bool)myTree.GetData("TakeUpAction")) turnSystem.takeupAction();
+            }
             //transform.position = (Vector3)myTree.GetData("CurrentPosition");
         }
         

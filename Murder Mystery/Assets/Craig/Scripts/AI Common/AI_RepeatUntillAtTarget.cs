@@ -39,7 +39,8 @@ public class AI_RepeatUntillAtTarget : DecoratorNode
         currentPos = (Vector3)myTree.GetData("Position");
         //Debug.Log("RepeatUntilAtTarget: Position: " + currentPos.ToString());
         if (currentPos == null) return NodeState.Failed;
-
+        myTree.SetData("TakeUpAction", (bool)true);
+        
         return (Vector3.Distance(currentPos, targetPos) <= threshold) ? NodeState.Success : NodeState.Running;
         
 

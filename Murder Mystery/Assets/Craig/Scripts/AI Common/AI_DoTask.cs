@@ -24,8 +24,14 @@ public class AI_DoTask : ActionNode
 
     protected override NodeState OnUpdate()
     {
-        
 
-        return taskList[index].DoTask() ? NodeState.Success : NodeState.Failed; 
+        if(taskList[index].DoTask())
+        {
+            taskList.RemoveAt(index);
+            Debug.Log("Task Completed");
+            return NodeState.Success;
+        }
+        Debug.Log("Task Failed");
+        return NodeState.Failed; 
     }
 }
