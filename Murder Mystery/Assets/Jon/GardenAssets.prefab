@@ -7482,6 +7482,7 @@ GameObject:
   - component: {fileID: 7002988741008879874}
   - component: {fileID: 7002988741008879900}
   - component: {fileID: 7002988741008879875}
+  - component: {fileID: 8537163953316059878}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -7552,6 +7553,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8537163953316059878
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7002988741008879873}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.019999998, y: 0.019999994, z: 0.027027652}
+  m_Center: {x: 0, y: 0.000000029802322, z: -0.0035138112}
 --- !u!1 &7002988741010645994
 GameObject:
   m_ObjectHideFlags: 0
@@ -10418,6 +10432,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7002988742324315758}
+  - component: {fileID: 8770700410599576988}
   m_Layer: 0
   m_Name: plantertrellissanscube (2)
   m_TagString: Untagged
@@ -10443,6 +10458,19 @@ Transform:
   m_Father: {fileID: 7002988741197328113}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!65 &8770700410599576988
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7002988741099521725}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.4700723, y: 8.742766, z: 8.179089}
+  m_Center: {x: 0.13751677, y: 3.279419, z: -0.030824242}
 --- !u!1 &7002988741100032064
 GameObject:
   m_ObjectHideFlags: 0
@@ -29243,6 +29271,7 @@ GameObject:
   - component: {fileID: 7002988741930054748}
   - component: {fileID: 7002988741930054750}
   - component: {fileID: 7002988741930054749}
+  - component: {fileID: 4470058115603228036}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -29313,6 +29342,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4470058115603228036
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7002988741930054723}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.020000009, y: 0.020000005, z: 0.027027652}
+  m_Center: {x: -0.000000007450581, y: -0.000000029802322, z: -0.0035138149}
 --- !u!1 &7002988741944666829
 GameObject:
   m_ObjectHideFlags: 0
@@ -39043,6 +39085,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7002988741939685528}
+  - component: {fileID: 728994085643228155}
   m_Layer: 0
   m_Name: plantertrellissanscube
   m_TagString: Untagged
@@ -39068,6 +39111,19 @@ Transform:
   m_Father: {fileID: 7002988741197328113}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!65 &728994085643228155
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7002988742306016511}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.4700723, y: 8.742766, z: 8.179089}
+  m_Center: {x: 0.13751677, y: 3.279419, z: -0.030824242}
 --- !u!1 &7002988742307516529
 GameObject:
   m_ObjectHideFlags: 0
@@ -39160,6 +39216,7 @@ GameObject:
   - component: {fileID: 7002988742312186250}
   - component: {fileID: 7002988742312186244}
   - component: {fileID: 7002988742312186251}
+  - component: {fileID: 4924415367428365426}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -39230,6 +39287,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &4924415367428365426
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7002988742312186249}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.020000005, y: 0.020000001, z: 0.019999996}
+  m_Center: {x: 0, y: 0.000000029802322, z: -0.000000010244548}
 --- !u!1 &7002988742312267643
 GameObject:
   m_ObjectHideFlags: 0
@@ -41775,6 +41845,7 @@ GameObject:
   - component: {fileID: 7002988742434597986}
   - component: {fileID: 7002988742434598012}
   - component: {fileID: 7002988742434597987}
+  - component: {fileID: 9074876869813901835}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -41845,6 +41916,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &9074876869813901835
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7002988742434597985}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.020000005, y: 0.02, z: 0.027027652}
+  m_Center: {x: 4.4644932e-24, y: -0.000000011175871, z: -0.0035138093}
 --- !u!1 &7002988742437458742
 GameObject:
   m_ObjectHideFlags: 0
@@ -41975,6 +42059,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7002988741140263936}
+  - component: {fileID: 5126270166050204645}
   m_Layer: 0
   m_Name: plantertrellissanscube (3)
   m_TagString: Untagged
@@ -42000,6 +42085,19 @@ Transform:
   m_Father: {fileID: 7002988741197328113}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!65 &5126270166050204645
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7002988742439759700}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.4700723, y: 8.742766, z: 8.179089}
+  m_Center: {x: 0.13751677, y: 3.279419, z: -0.030824242}
 --- !u!1 &7002988742443592945
 GameObject:
   m_ObjectHideFlags: 0
