@@ -219,7 +219,7 @@ public class VRPlayerScript : CharacterScript
     {
 
         //We need to position this dice above the player's right hand.
-        dice.transform.position = pointer.position + new Vector3(0.0f, 0.5f, 0.0f);
+        dice.transform.position = pointer.position + (pointer.forward * 0.3f);
 
         base.grantDice(dice); //We need to return to the base function, which will automatically set the roller of the dice for us.
 

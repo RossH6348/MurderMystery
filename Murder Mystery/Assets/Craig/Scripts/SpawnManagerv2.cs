@@ -108,6 +108,15 @@ public class SpawnManagerv2 : MonoBehaviour
         spawnPointIndex++;
         if (spawnPointIndex >= spawnPoints.Count) return null;
 
+        VRPlayerScript temp;
+        if(characterPrefab.TryGetComponent<VRPlayerScript>(out temp))
+        {
+            //need to move the existing player, not spawn - workaround for VIVE headset not allowing spawning of VR device
+            characterPrefab.transform.position = spawnPoints[spawnPointIndex].position;
+            characterPrefab.transform.rotation = spawnPoints[spawnPointIndex].rotation;
+            return characterPrefab;
+        }
+
         return Instantiate(characterPrefab, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
        
     }

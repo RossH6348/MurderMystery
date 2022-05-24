@@ -13,7 +13,7 @@ public class GameSystemv2 : MonoBehaviour
     [SerializeField] private TurnSystem turnSystem;
     [SerializeField] private GridSystem gridSystem;
 
-    [SerializeField] private GameObject vrPlayerPrefab;
+    [SerializeField] private GameObject vrPlayer;
     [SerializeField] private GameObject aiPlayerPrefab;
     [SerializeField] private int numberOfAIPlayers = 3;
 
@@ -123,7 +123,7 @@ public class GameSystemv2 : MonoBehaviour
 
     private void spawnPlayers()
     {
-        characterPrefabs.Add(vrPlayerPrefab);
+        characterPrefabs.Add(vrPlayer);
         for(int i = 0; i < numberOfAIPlayers; i++)
         {
             characterPrefabs.Add(aiPlayerPrefab);
