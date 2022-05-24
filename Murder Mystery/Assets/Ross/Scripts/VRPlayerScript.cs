@@ -9,8 +9,6 @@ public class VRPlayerScript : CharacterScript
 
     [SerializeField] private Transform pointer;
 
-    private Transform attachmentPoint;
-
     private GameObject laser;
     private GameObject selectedObject = null;
 
@@ -76,7 +74,7 @@ public class VRPlayerScript : CharacterScript
         {
             //Allow the VR player to carry out their controls with the laser pointer.
             RaycastHit result;
-            if (Physics.Raycast(pointer.position, pointer.forward, out result, 9999.0f,LayerMask.GetMask("Node")))
+            if (Physics.Raycast(pointer.position, pointer.forward, out result, 9999.0f))
             {
 
                 if(!laser.activeSelf)
@@ -220,8 +218,8 @@ public class VRPlayerScript : CharacterScript
     public override void grantDice(GameObject dice)
     {
 
-        //We need to position this dice infront of the player.
-        dice.transform.position = transform.position + transform.forward + new Vector3(0.0f, 1.0f, 0.0f);
+        //We need to position this dice above the player's right hand.
+        dice.transform.position = pointer.position + new Vector3(0.0f, 0.5f, 0.0f);
 
         base.grantDice(dice); //We need to return to the base function, which will automatically set the roller of the dice for us.
 
