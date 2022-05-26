@@ -109,7 +109,10 @@ public class AIScript : CharacterScript
             }
             //transform.position = (Vector3)myTree.GetData("CurrentPosition");
         }
-        
+
+        if (tasks.Count == 0) GameSystemv2.Instance.DeclareWin(this, GameSystemv2.WinReason.AllTasksComplete);
+
+
     }
 
     public override void onTurnExit()

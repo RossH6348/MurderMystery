@@ -7,14 +7,30 @@ public class PlayerInventory : MonoBehaviour
     public InventoryObject inventory;
     public ItemObject testItem;
     public string testPlayerType;
-    
-    public void OnTriggerEnter(Collider other)
+
+
+    //public void OnTriggerEnter(Collider other)
+    //{
+    //    var item = other.GetComponent<ItemFoundation>();
+    //    if (item)
+    //    {
+    //        inventory.AddItem(item.item, 1);
+    //        Destroy(other.gameObject);
+    //    }
+    //}
+
+    private void Awake()
     {
-        var item = other.GetComponent<ItemFoundation>();
-        if (item)
+        inventory = ScriptableObject.CreateInstance<InventoryObject>();
+    }
+
+    public void ItemCollect(GameObject item)
+    {
+        var tempItem = item.GetComponent<ItemFoundation>();
+        if (tempItem)
         {
-            inventory.AddItem(item.item, 1);
-            Destroy(other.gameObject);
+            inventory.AddItem(tempItem.item, 1);
+            Destroy(item.gameObject);
         }
     }
 

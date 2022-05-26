@@ -5,6 +5,16 @@ using UnityEngine;
 
 public class GameSystemv2 : MonoBehaviour
 {
+
+    public enum WinReason : int
+    {
+        AllTasksComplete = 0,
+        TargetKilled,
+        TargetAccused,
+        //Insert new reasons above this line
+        NumOfWinReasons
+    }
+
     private static GameSystemv2 instance;
 
     private GameStates currentState = GameStates.Menu;
@@ -77,6 +87,8 @@ public class GameSystemv2 : MonoBehaviour
                 break;
             case GameStates.NumOfStates:
                 break;
+            case GameStates.Lose:
+                break;
             default:
                 break;
         }
@@ -100,13 +112,24 @@ public class GameSystemv2 : MonoBehaviour
                 else { nextState = currentState; }
                 break;
             case GameStates.Initializing:
-                if(nextState == GameStates.GamePlay)
+                if (nextState == GameStates.GamePlay)
                 {
                     TurnSystem.Instance.StartTurnSystem();
                     currentState = NextState;
                 }
                 break;
             case GameStates.GamePlay:
+                if(nextState == GameStates.Win)
+                {
+                    Debug.Log("YOU WIN! :-)");
+                    currentState = nextState;
+                }
+                else if(nextState == GameStates.Lose)
+                {
+                    Debug.Log("YOU LOST! :-(");
+                    currentState = nextState;
+                }
+                else { nextState = currentState; }
                 break;
             case GameStates.Pause:
                 break;
@@ -115,6 +138,8 @@ public class GameSystemv2 : MonoBehaviour
             case GameStates.Quit:
                 break;
             case GameStates.NumOfStates:
+                break;
+            case GameStates.Lose:
                 break;
             default:
                 break;
@@ -136,5 +161,39 @@ public class GameSystemv2 : MonoBehaviour
         //{
         //    characters.Add(SpawnManager.Instance.Spawn(characterPrefab));
         //}
+    }
+
+
+    public void DeclareWin(CharacterScript player, WinReason reason)
+    {
+
+        Debug.Log("Player: " + player.characterName + " is the winner! : " + reason.ToString());
+
+        //switch statement to do special thing depending on win reason - does nothing for now - could also be moved to Update - Win State
+        switch (reason)
+        {
+            case WinReason.AllTasksComplete:
+                break;
+            case WinReason.TargetKilled:
+                break;
+            case WinReason.TargetAccused:
+                break;
+
+            case WinReason.NumOfWinReasons:
+            default:
+                //Do nothing
+                break;
+        }
+
+        VRPlayerScript vrPlayer;
+        if (player.gameObject.TryGetComponent<VRPlayerScript>(out vrPlayer))
+        {
+            NextState = GameStates.Win;
+        }
+        else
+        {
+            NextState = GameStates.Lose;
+        }
+        
     }
 }

@@ -24,11 +24,13 @@ public class AI_DoTask : ActionNode
 
     protected override NodeState OnUpdate()
     {
-
-        if(taskList[index].DoTask())
+        WeaponObject temp = new WeaponObject();
+        GameObject temp1 = new GameObject();
+        if(taskList[index].DoTask(temp, temp1))
         {
             taskList.RemoveAt(index);
             Debug.Log("Task Completed");
+            
             return NodeState.Success;
         }
         Debug.Log("Task Failed");

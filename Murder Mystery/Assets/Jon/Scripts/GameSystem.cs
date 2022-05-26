@@ -10,6 +10,7 @@ public enum GameStates
     Pause,
     Win,
     Quit,
+    Lose,
     //Add new states
     NumOfStates
 }

@@ -12,7 +12,8 @@ public enum ItemID
 
 public abstract class ItemObject : ScriptableObject
 {
-    public GameObject prefab;
+    public GameObject prefab2d;
+    public GameObject prefab3d;
     public ItemID type;
     [TextArea(15, 20)]
     public string description;
