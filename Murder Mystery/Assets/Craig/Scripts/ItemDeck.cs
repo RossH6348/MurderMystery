@@ -6,16 +6,16 @@ public class ItemDeck : MonoBehaviour
 {
     [SerializeField] List<ItemObject> unshuffledItemDeck = new List<ItemObject>();
     [SerializeField] float chanceOfUseableItem = 0.5f;
-    [SerializeField] int numberOfWeapons;
+    [SerializeField] int numberOfWeapons = 2;
 
     private List<ItemObject> shuffledItemDeck = new List<ItemObject>();
     private float maxChance = 1.0f;
     private float minChance = 0.1f;
     private int factor = 100;
 
-    private ItemDeck instance;
+    private static ItemDeck instance;
 
-    public ItemDeck Instance
+    public static ItemDeck Instance
     {
         get
         {
@@ -73,12 +73,12 @@ public class ItemDeck : MonoBehaviour
 
     }
 
-    public void ReturnToDeck(ItemObject itemPrefab)
+    public void ReturnToDeck(ItemObject itemObject)
     {
         foreach(ItemObject item in shuffledItemDeck)
         {
-            if (item == itemPrefab) return;
+            if (item == itemObject) return;
         }
-        shuffledItemDeck.Add(itemPrefab);
+        shuffledItemDeck.Add(itemObject);
     }
 }

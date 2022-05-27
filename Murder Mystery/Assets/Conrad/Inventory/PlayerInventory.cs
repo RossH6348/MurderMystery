@@ -22,10 +22,24 @@ public class PlayerInventory : MonoBehaviour
     private void Awake()
     {
         inventory = ScriptableObject.CreateInstance<InventoryObject>();
+
+        DisplayInventory displayInventory = gameObject.GetComponentInChildren<DisplayInventory>(true);
+
+        if (displayInventory != null)
+        {
+            displayInventory.inventory = inventory;
+        }
+    }
+
+    public void ItemCollect(ItemObject item)
+    {
+        if (item == null) return;
+        inventory.AddItem(item, 1);
     }
 
     public void ItemCollect(GameObject item)
     {
+        if (item == null) return;
         var tempItem = item.GetComponent<ItemFoundation>();
         if (tempItem)
         {
@@ -39,6 +53,11 @@ public class PlayerInventory : MonoBehaviour
         inventory.Bag.Clear();
     }
 
+
+    public ItemObject FirstItemRequest()
+    {
+        return inventory.GatherFirstItem(testPlayerType);
+    }
 
     public void ItemRequest()
     {

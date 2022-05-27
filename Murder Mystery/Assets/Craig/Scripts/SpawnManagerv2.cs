@@ -93,6 +93,12 @@ public class SpawnManagerv2 : MonoBehaviour
                 playerColourizer.SetMaterial(playerCharacterMaterials[characters.Count]);
             }
             
+            //select the starting item from the deck
+            if(tempCharacter.TryGetComponent<PlayerInventory>(out PlayerInventory inventory))
+            {
+                inventory.ItemCollect(ItemDeck.Instance.DrawFromDeck());
+            }
+
             characters.Add(tempCharacter);
         }
 

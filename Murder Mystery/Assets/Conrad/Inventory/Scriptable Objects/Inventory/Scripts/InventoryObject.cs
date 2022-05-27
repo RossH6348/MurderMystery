@@ -25,6 +25,29 @@ public class InventoryObject : ScriptableObject
         }
     }
 
+    public ItemObject GatherFirstItem(string CharacterType)
+    {
+        if (Bag.Count <= 0) return null;
+        ItemObject itemToReturn;
+
+        itemToReturn = Bag[0].item;
+        Bag[0].AddAmount(-1);
+        if (Bag[0].amount <= 0)
+        {
+
+            if (CharacterType == "Non-Human")
+            {
+                Bag.RemoveAt(0);
+            }
+            else
+            {
+                EmptySlots.Add(0);
+            }
+        }
+
+        return itemToReturn;
+    }
+
     public void GatherItem(ItemObject _item,string CharacterType)
     {
         

@@ -44,7 +44,7 @@ public class DisplayInventory : MonoBehaviour
         bool requiresReconst = false;
         for (int i = 0; i < inventory.Bag.Count; i++)
         {
-            Debug.Log(inventory.Bag[i].amount);
+            //Debug.Log(inventory.Bag[i].amount);
             if (inventory.Bag[i].amount == 0)
             {
                 requiresReconst = true;

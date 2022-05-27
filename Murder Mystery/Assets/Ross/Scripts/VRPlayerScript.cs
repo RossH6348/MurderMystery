@@ -163,7 +163,10 @@ public class VRPlayerScript : CharacterScript
                 if (wristConfirm.GetStateDown(SteamVR_Input_Sources.LeftHand))
                 {
                     //Attempt to see if their is a script attached to this element that does stuff.
-
+                    if(wristOptions[wristSelect].TryGetComponent<IHUDScreen>(out IHUDScreen hUDScreen))
+                    {
+                        hUDScreen.executeScreenClick(this.gameObject);
+                    }
                 }
             }
         }

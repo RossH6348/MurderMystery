@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 372909fe1d9e19e4ebfb82dfae833bf1, type: 3}
+  m_Name: HandFork
+  m_EditorClassIdentifier: 
+  prefab2d: {fileID: 8786303234083792751, guid: 807bd83b65831154998218aedf8282f6, type: 3}
+  prefab3d: {fileID: 4180061255284157261, guid: 6d87f0e29d889f840a3027698cb50fe6, type: 3}
+  type: 2
+  description: Hand Fork
