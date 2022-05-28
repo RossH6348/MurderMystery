@@ -3455,6 +3455,10 @@ PrefabInstance:
       value: GameSystem
       objectReference: {fileID: 0}
     - target: {fileID: 5950931590530086229, guid: a3075af1928d7124789a2b66b0b1f392, type: 3}
+      propertyPath: chanceOfUseableItem
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5950931590530086229, guid: a3075af1928d7124789a2b66b0b1f392, type: 3}
       propertyPath: unshuffledItemDeck.Array.size
       value: 5
       objectReference: {fileID: 0}

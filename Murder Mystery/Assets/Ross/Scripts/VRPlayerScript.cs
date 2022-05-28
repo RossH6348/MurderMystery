@@ -4,6 +4,7 @@ using UnityEngine;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
 
+[RequireComponent(typeof(PlayerInventory))]
 public class VRPlayerScript : CharacterScript
 {
 
@@ -27,6 +28,7 @@ public class VRPlayerScript : CharacterScript
     private int wristSelect = -1;
     private List<GameObject> wristOptions = new List<GameObject>();
 
+    private PlayerInventory inventory;
 
     // Start is called before the first frame update
     private void Awake()
@@ -58,6 +60,8 @@ public class VRPlayerScript : CharacterScript
         //Set the left controller to use the custom wrist mapping instead.
         //Setting priority to a ludicrous number, so that it actually overrides the default binding. 
         wristSet.Activate(SteamVR_Input_Sources.LeftHand, 999);
+
+        inventory = GetComponent<PlayerInventory>();
     }
 
     public override void onTurnEnter()
@@ -165,8 +169,34 @@ public class VRPlayerScript : CharacterScript
                     //Attempt to see if their is a script attached to this element that does stuff.
                     if(wristOptions[wristSelect].TryGetComponent<IHUDScreen>(out IHUDScreen hUDScreen))
                     {
-                        hUDScreen.executeScreenClick(this.gameObject);
+                        hUDScreen.executeScreenClick(this.gameObject, wristHUD);
                     }
+                }
+            }
+        }
+
+        if(wristConfirm.GetStateDown(SteamVR_Input_Sources.LeftHand) && !wristHUD.activeSelf)
+        {
+            //if wrist HUD is not active, then we want to use the wrist confirm button to add the item to the inventory (if held)
+            foreach(Hand hand in Player.instance.hands)
+            {
+                if (hand.currentAttachedObject == null) continue;
+                if(hand.currentAttachedObject.TryGetComponent<ItemFoundation>(out ItemFoundation itemFoundation))
+                {
+                    //first check if something is already in the inventory
+                    if(inventory.inventory.Bag.Count > 0)
+                    {
+                        //something is in the inventory, fetch this out first
+                        InventoryHUDScreen inventoryHUDScreen = gameObject.GetComponentInChildren<InventoryHUDScreen>(true);
+                        if(inventoryHUDScreen != null)
+                        {
+                            inventoryHUDScreen.executeScreenClick(this.gameObject, wristHUD);
+                        }
+                    }
+                    GameObject temp = hand.currentAttachedObject;
+                    hand.DetachObject(temp); //force detatch first as ItemCollect will destroy the object
+                    inventory.ItemCollect(temp);
+                    break; // player should only be holding 1 item at a time
                 }
             }
         }

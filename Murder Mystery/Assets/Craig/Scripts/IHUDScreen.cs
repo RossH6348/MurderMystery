@@ -1,5 +1,5 @@
 using UnityEngine;
 public interface IHUDScreen
 {
-    public void executeScreenClick(GameObject caller);
+    public void executeScreenClick(GameObject caller, GameObject wristHUD);
 }
