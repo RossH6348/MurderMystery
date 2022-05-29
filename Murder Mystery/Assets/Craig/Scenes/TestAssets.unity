@@ -2202,10 +2202,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5520835820439464251, guid: bfe53175b311aad45a9c23a4136c9a32, type: 3}
-      propertyPath: itemSpawnPoint
-      value: 
-      objectReference: {fileID: 2041565775}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bfe53175b311aad45a9c23a4136c9a32, type: 3}
 --- !u!1 &1376868711 stripped
@@ -3125,11 +3121,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!4 &2041565775 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1857169837822368790, guid: bfe53175b311aad45a9c23a4136c9a32, type: 3}
-  m_PrefabInstance: {fileID: 1344014760}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &2089978032
 Mesh:
   m_ObjectHideFlags: 0
