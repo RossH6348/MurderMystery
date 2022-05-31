@@ -4,17 +4,141 @@ using UnityEngine;
 using Valve.VR.InteractionSystem;
 public class Task : MonoBehaviour
 {
-    [SerializeField] bool requiresItem = false;
-    [SerializeField] ItemObject item;
+    [SerializeField] private bool requiresItem = false;
+    [SerializeField] private ItemObject item;
+    [SerializeField] private Transform taskItemPoint = null;
+    [SerializeField] private Vector3 posOffset = Vector3.zero;
+    [SerializeField] private Vector3 itemScale = Vector3.one;
+    [SerializeField] private Vector3 rotationSpeed = Vector3.one;
+    [SerializeField] private Material itemMaterial = null;
+    [SerializeField] private float minTimeItemPresent = 1.5f;
+    [SerializeField] private ParticleSystem myPS = null;
 
-    public bool DoTask(ItemObject itemPresented, GameObject item)
+    private GameObject myItem = null;
+    private bool coroutineRunning = false;
+    
+
+    private float timeInContact = 0f;
+
+    private void Awake()
     {
-        if(itemPresented.name == item.name)
+        if(requiresItem && (item != null))
         {
-            Destroy(item);
+            myItem = Instantiate(item.prefab3d, taskItemPoint);
+            myItem.transform.position += posOffset;
         }
-        if (requiresItem) return false;
-        return Random.Range((int)0, (int)2) == 0 ? false : true;
+
+        
+        
+    }
+
+    private void Start()
+    {
+        if (requiresItem && (myItem != null))
+        {
+            
+            myItem.transform.localScale = Vector3.Scale(myItem.transform.localScale, itemScale);
+            //myItem.transform.lossyScale.Scale(itemScale);
+
+            //if (myItem.TryGetComponent<Interactable>(out Interactable interactable)) interactable.enabled = false;
+            //if (myItem.TryGetComponent<Throwable>(out Throwable throwable)) throwable.enabled = false;
+            if (myItem != null) myItem.AddComponent<IgnoreHovering>(); //disables ability to interact and pickup - using .enabled as above does not work
+            foreach (Collider col in myItem.GetComponentsInChildren<Collider>()) col.enabled = false;
+            if (myItem.TryGetComponent<Rigidbody>(out Rigidbody rigidbody)) rigidbody.isKinematic = true;
+
+            if (itemMaterial != null)
+            {
+
+                foreach(Renderer rend in myItem.GetComponentsInChildren<Renderer>())
+                {
+                    for (int i = 0; i < rend.materials.Length; i++)
+                    {
+                        //Copy the transparent blue material onto the item
+                        rend.materials[i].CopyPropertiesFromMaterial(itemMaterial);
+                        //renderer.materials[i] = itemMaterial; - according to the documentation this should work... but doesn't
+                    }
+                }
+                    
+                
+                    
+                
+            }
+
+
+        }
+    }
+
+    private void Update()
+    {
+        if (myItem == null) return;
+
+        myItem.transform.Rotate(rotationSpeed * Time.deltaTime);
+    }
+
+    IEnumerator DoTaskComplete(Vector3 particleSystemPos)
+    {
+        if (myPS != null)
+        {
+            myPS.gameObject.transform.position = particleSystemPos;
+            myPS.Play();
+        }
+        //TODO trigger hapitic pulse
+
+        //wait for particle system to finish
+        yield return new WaitForSeconds(myPS.main.duration);
+
+        //drawn new item from deck and spawn
+        ItemObject newItem = ItemDeck.Instance.DrawFromDeck();
+        if(newItem != null)
+        {
+            GameObject temp = Instantiate(newItem.prefab3d, taskItemPoint.position + posOffset, transform.rotation);
+            //TODO play positive sound
+        }
+        else
+        {
+            //play negative sound
+        }
+        
+        coroutineRunning = false;
+    }
+
+    private bool DoTask()
+    {
+        if (coroutineRunning) return false;
+
+        if (!requiresItem)
+        {
+            coroutineRunning = true;
+            StartCoroutine(DoTaskComplete(taskItemPoint.transform.position + posOffset));
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public bool DoTask(ItemObject itemPresented, GameObject itemGameObject)
+    {
+        if (coroutineRunning) return false;
+
+        if((itemPresented == null) && !requiresItem)
+        {
+            coroutineRunning = true;
+            StartCoroutine(DoTaskComplete(itemGameObject.transform.position));
+            
+            return true;
+        }
+        else if(requiresItem &&(itemPresented.name == item.name))
+        {
+            ItemDeck.Instance.ReturnToDeck(itemPresented);
+            Destroy(itemGameObject);
+            coroutineRunning = true;
+            StartCoroutine(DoTaskComplete(itemGameObject.transform.position));
+            return true;
+        }
+
+        return false;
+        //return Random.Range((int)0, (int)2) == 0 ? false : true; //used for testing the AI
     }
 
     public Vector3 GetPosition()
@@ -24,21 +148,61 @@ public class Task : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Interactable interactible;
-        ItemObject itemObject;
+        
+        
+    }
 
-        if (!other.gameObject.TryGetComponent<ItemObject>(out itemObject)) return;
+    public void OnTriggerStayChild(Collider other)
+    {
+        
+        if (!other.gameObject.TryGetComponent<ItemFoundation>(out ItemFoundation itemFoundation)) return;
 
-        if(other.gameObject.TryGetComponent<Interactable>(out interactible))
+        if (other.gameObject.TryGetComponent<Interactable>(out Interactable interactable))
         {
             //object is interactible
             //test to see if it is still in hand
-            if(!interactible.attachedToHand)
+            if (!interactable.attachedToHand)
             {
-                //not attached to the hand anymore - player has dropped it
-                DoTask(itemObject, other.gameObject);
+                
+                if(timeInContact >= minTimeItemPresent)
+                {
+                    //not attached to the hand anymore - player has dropped it
+                    DoTask(itemFoundation.item, other.gameObject);
+                }
+                else
+                {
+                    timeInContact = 0;
+                }
+                
+            }
+            else
+            {
+                timeInContact += Time.deltaTime;
+                if (timeInContact >= minTimeItemPresent)
+                {
+                    //Check if item presented is correct and then
+                    //TODO change material maybe
+                    //TODO trigger haptic
+                    //TODO trigger sound
+                    //TODO display hint to drop
+                    //ready to drop
+                }
+
             }
         }
-        
     }
+
+    public void OnTriggerExitChild(Collider other)
+    {
+        //timeInContact = 0;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.TryGetComponent<CharacterScript>(out CharacterScript characterScript) && !requiresItem)
+        {
+            DoTask();
+        }
+    }
+
 }

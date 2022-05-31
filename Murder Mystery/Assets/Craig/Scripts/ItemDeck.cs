@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ItemDeck : MonoBehaviour
 {
-    [SerializeField] List<ItemObject> unshuffledItemDeck = new List<ItemObject>();
-    [SerializeField] float chanceOfUseableItem = 0.5f;
-    [SerializeField] int numberOfWeapons = 2;
+    [SerializeField] private List<ItemObject> unshuffledItemDeck = new List<ItemObject>();
+    [SerializeField] private int deckMultiplier = 2;
+    [SerializeField] private float chanceOfUseableItem = 0.5f;
+    [SerializeField] private int numberOfWeapons = 2;
 
     private List<ItemObject> shuffledItemDeck = new List<ItemObject>();
     private float maxChance = 1.0f;
@@ -14,6 +15,8 @@ public class ItemDeck : MonoBehaviour
     private int factor = 100;
 
     private static ItemDeck instance;
+
+    
 
     public static ItemDeck Instance
     {
@@ -31,7 +34,10 @@ public class ItemDeck : MonoBehaviour
 
     private void ShuffleDeckAndAssignWeapons(int numOfWeapons)
     {
-        shuffledItemDeck = unshuffledItemDeck;
+        for(int i = 0; i < deckMultiplier; i++)
+        {
+            shuffledItemDeck.AddRange(unshuffledItemDeck);
+        }
         shuffledItemDeck.Shuffle();
         foreach(ItemObject item in shuffledItemDeck)
         {

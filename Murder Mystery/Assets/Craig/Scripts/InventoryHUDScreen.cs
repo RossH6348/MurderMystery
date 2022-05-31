@@ -10,13 +10,13 @@ public class InventoryHUDScreen : MonoBehaviour, IHUDScreen
 
     private void Awake()
     {
-        displayInventory = GetComponent<DisplayInventory>();
+        
     }
     public void executeScreenClick(GameObject caller, GameObject wristHUD)
     {
         if(caller.TryGetComponent<PlayerInventory>(out PlayerInventory playerInventory))
         {
-            
+            displayInventory = GetComponent<DisplayInventory>();
             ItemObject item = playerInventory.FirstItemRequest();
             if (item == null) return;
             GameObject temp = Instantiate(item.prefab3d, itemSpawnPoint);
@@ -26,7 +26,7 @@ public class InventoryHUDScreen : MonoBehaviour, IHUDScreen
             //}
             displayInventory.UpdateDisplay(); //need to call this to ensure the inventory is purged
             wristHUD.SetActive(false);
-            ItemDeck.Instance.ReturnToDeck(item);
+            //ItemDeck.Instance.ReturnToDeck(item);
         }
         
     }

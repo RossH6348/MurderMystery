@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7708284370638851117}
   - component: {fileID: 8987931215753555545}
   - component: {fileID: 6138544812900049091}
-  - component: {fileID: 2004697320955638210}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -83,20 +82,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &2004697320955638210
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 322796650950285340}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.010524777
-  m_Height: 0.037640896
-  m_Direction: 2
-  m_Center: {x: -0.0002443244, y: -0.00011776222, z: 0.0057115196}
 --- !u!1 &2932824811808852838
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,6 +177,7 @@ GameObject:
   - component: {fileID: 4638865503779199811}
   - component: {fileID: 576650320508548550}
   - component: {fileID: 3788119690842308603}
+  - component: {fileID: 8610042486315887944}
   m_Layer: 0
   m_Name: HandFork3D
   m_TagString: Untagged
@@ -363,6 +349,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d069b9701439624b86f62e15115ad58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &8610042486315887944
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4180061255284157261}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3349648
+  m_Height: 3.746631
+  m_Direction: 1
+  m_Center: {x: -0.0026290491, y: -0.5918315, z: 0}
 --- !u!1 &4760160279231862777
 GameObject:
   m_ObjectHideFlags: 0
