@@ -88,7 +88,11 @@ public class SpawnManagerv2 : MonoBehaviour
             {
                 aIScript.initAI();
             }
-            if(tempCharacter.TryGetComponent<PlayerColourizer>(out playerColourizer))
+
+            playerColourizer = tempCharacter.GetComponentInChildren<PlayerColourizer>();
+
+            //if(tempCharacter.TryGetComponent<PlayerColourizer>(out playerColourizer))
+            if(playerColourizer != null)
             {
                 playerColourizer.SetMaterial(playerCharacterMaterials[characters.Count]);
             }

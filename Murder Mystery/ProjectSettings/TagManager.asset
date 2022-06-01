@@ -7,6 +7,7 @@ TagManager:
   - AI_Head
   - AI_TieKnot
   - AI_TieTail
+  - Map_Player_Icon
   layers:
   - Default
   - TransparentFX
