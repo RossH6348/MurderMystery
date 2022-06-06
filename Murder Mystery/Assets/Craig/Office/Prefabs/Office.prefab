@@ -113,7 +113,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1791
   m_RenderingLayerMask: 1
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
@@ -206,7 +206,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1791
   m_RenderingLayerMask: 1
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
@@ -274,7 +274,7 @@ ReflectionProbe:
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1791
   m_IntensityMultiplier: 1
   m_BlendDistance: 1
   m_HDR: 1
@@ -430,13 +430,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: OfficeDesk Variant 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1414599926751046341, guid: 4135c6f6890a8f849a2d432ea7041cb5, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 1795383259597271167, guid: 4135c6f6890a8f849a2d432ea7041cb5, type: 3}
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1795383259597271167, guid: 4135c6f6890a8f849a2d432ea7041cb5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 1795383259597271167, guid: 4135c6f6890a8f849a2d432ea7041cb5, type: 3}
       propertyPath: m_LocalScale.z
-      value: 75
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 1795383259597271167, guid: 4135c6f6890a8f849a2d432ea7041cb5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -444,11 +452,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1795383259597271167, guid: 4135c6f6890a8f849a2d432ea7041cb5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.77
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 1795383259597271167, guid: 4135c6f6890a8f849a2d432ea7041cb5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.229
+      value: 2.36
       objectReference: {fileID: 0}
     - target: {fileID: 1795383259597271167, guid: 4135c6f6890a8f849a2d432ea7041cb5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -602,6 +610,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Office_WallE
       objectReference: {fileID: 0}
+    - target: {fileID: 4396933659744043905, guid: a2eb8e35be8f9b24b88496ef5545c75d, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2eb8e35be8f9b24b88496ef5545c75d, type: 3}
 --- !u!4 &2174552971382272097 stripped
@@ -616,6 +628,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2242158954872900670}
     m_Modifications:
+    - target: {fileID: 5592280483759132159, guid: 8e97364f9e8996341a55f5902b857af2, type: 3}
+      propertyPath: m_RefreshMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7822844487073182765, guid: 8e97364f9e8996341a55f5902b857af2, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: -1.200154e-16

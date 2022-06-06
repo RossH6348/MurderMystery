@@ -678,6 +678,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7225907563225648075, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
+      propertyPath: m_Size.y
+      value: 1.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 7225907563225648075, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
       propertyPath: m_Size.z
       value: 1
       objectReference: {fileID: 0}

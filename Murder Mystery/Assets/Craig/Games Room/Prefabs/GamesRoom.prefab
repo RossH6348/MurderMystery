@@ -121,7 +121,7 @@ ReflectionProbe:
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1791
   m_IntensityMultiplier: 1
   m_BlendDistance: 1
   m_HDR: 1
@@ -247,7 +247,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1791
   m_RenderingLayerMask: 1
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
@@ -738,8 +738,16 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2031294246228393121, guid: 3020ccaae42788547b4c98beddc8e1a5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2031294246228393121, guid: 3020ccaae42788547b4c98beddc8e1a5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2031294246228393121, guid: 3020ccaae42788547b4c98beddc8e1a5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11
+      value: 10.18
       objectReference: {fileID: 0}
     - target: {fileID: 2031294246228393121, guid: 3020ccaae42788547b4c98beddc8e1a5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -747,7 +755,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2031294246228393121, guid: 3020ccaae42788547b4c98beddc8e1a5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16
+      value: 15.37
       objectReference: {fileID: 0}
     - target: {fileID: 2031294246228393121, guid: 3020ccaae42788547b4c98beddc8e1a5, type: 3}
       propertyPath: m_LocalRotation.w
