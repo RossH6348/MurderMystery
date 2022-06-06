@@ -26,6 +26,7 @@ public class Task : MonoBehaviour
     public ItemObject Item { get => item; }
     public Transform TaskItemPoint { get => taskItemPoint;  }
     public bool RequiresItem { get => requiresItem; }
+    public Vector3 PosOffset { get => posOffset; }
 
     private void Awake()
     {
@@ -142,9 +143,10 @@ public class Task : MonoBehaviour
         else if(requiresItem &&(itemPresented.name == item.name))
         {
             ItemDeck.Instance.ReturnToDeck(itemPresented);
-            Destroy(itemGameObject);
+            
             coroutineRunning = true;
             StartCoroutine(DoTaskComplete(itemGameObject.transform.position));
+            Destroy(itemGameObject);
             return true;
         }
 

@@ -73,7 +73,7 @@ public class AI_DoTask : ActionNode
                     if (inventory.inventory.Bag[0].item.name != taskList[index].Item.name) return NodeState.Failed; //arrived at a task which we don't have an item for
 
                     item = inventory.FirstItemRequest();
-                    temp = Instantiate(item.prefab3d, taskList[index].TaskItemPoint);
+                    temp = Instantiate(item.prefab3d, taskList[index].TaskItemPoint.position + (taskList[index].PosOffset), taskList[index].TaskItemPoint.rotation);
 
                     //show the item and then move to next state
                     showItemCoroutine = Helpers.Instance.StartCoroutine(Helpers.showPresentedItem(showDuration, () => { currentState = doTaskState.DoTask; }));
