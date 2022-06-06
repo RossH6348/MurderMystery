@@ -11,14 +11,21 @@ public class Task : MonoBehaviour
     [SerializeField] private Vector3 itemScale = Vector3.one;
     [SerializeField] private Vector3 rotationSpeed = Vector3.one;
     [SerializeField] private Material itemMaterial = null;
-    [SerializeField] private float minTimeItemPresent = 1.5f;
+    [SerializeField] private float minTimeItemPresent = 0.25f;
     [SerializeField] private ParticleSystem myPS = null;
 
     private GameObject myItem = null;
     private bool coroutineRunning = false;
-    
-
     private float timeInContact = 0f;
+
+    private float taskCompletionDelay = 1.0f; //the estimated time it takes to spawn an item once task is initiated - used by AI
+    private GameObject taskReward = null; //the item which was spawned - used by the AI
+
+    public float TaskCompletionDelay { get => taskCompletionDelay; }
+    public GameObject TaskReward { get => taskReward; }
+    public ItemObject Item { get => item; }
+    public Transform TaskItemPoint { get => taskItemPoint;  }
+    public bool RequiresItem { get => requiresItem; }
 
     private void Awake()
     {
@@ -28,8 +35,9 @@ public class Task : MonoBehaviour
             myItem.transform.position += posOffset;
         }
 
-        
-        
+        //set properties used by AI
+        taskReward = null;
+        if (myPS != null) taskCompletionDelay = myPS.main.duration + 2f; //long enough so VR player can see
     }
 
     private void Start()
@@ -77,6 +85,8 @@ public class Task : MonoBehaviour
 
     IEnumerator DoTaskComplete(Vector3 particleSystemPos)
     {
+        taskReward = null;
+
         if (myPS != null)
         {
             myPS.gameObject.transform.position = particleSystemPos;
@@ -91,11 +101,12 @@ public class Task : MonoBehaviour
         ItemObject newItem = ItemDeck.Instance.DrawFromDeck();
         if(newItem != null)
         {
-            GameObject temp = Instantiate(newItem.prefab3d, taskItemPoint.position + posOffset, transform.rotation);
+            taskReward = Instantiate(newItem.prefab3d, taskItemPoint.position + posOffset, transform.rotation);
             //TODO play positive sound
         }
         else
         {
+            
             //play negative sound
         }
         
@@ -124,7 +135,7 @@ public class Task : MonoBehaviour
         if((itemPresented == null) && !requiresItem)
         {
             coroutineRunning = true;
-            StartCoroutine(DoTaskComplete(itemGameObject.transform.position));
+            StartCoroutine(DoTaskComplete(taskItemPoint.transform.position + posOffset));
             
             return true;
         }
@@ -199,7 +210,7 @@ public class Task : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent<CharacterScript>(out CharacterScript characterScript) && !requiresItem)
+        if(other.TryGetComponent<VRPlayerScript>(out VRPlayerScript vRPlayerScript) && !requiresItem)
         {
             DoTask();
         }

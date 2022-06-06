@@ -14,6 +14,8 @@ public class SpawnManagerv2 : MonoBehaviour
     private int spawnPointIndex = -1;
     private static SpawnManagerv2 instance;
 
+    private int getSpawnPointIndex = 0;
+
     public static SpawnManagerv2 Instance
     {
         get
@@ -63,7 +65,8 @@ public class SpawnManagerv2 : MonoBehaviour
         {
             GameObject tempCharacter = Spawn(character);
             if (tempCharacter == null) break;
-            
+            tempCharacter.name += " P" + (characters.Count + 1).ToString();
+
             CharacterScript characterScript;
             AIScript aIScript;
             PlayerColourizer playerColourizer;
@@ -129,5 +132,19 @@ public class SpawnManagerv2 : MonoBehaviour
 
         return Instantiate(characterPrefab, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
        
+    }
+
+    //GetRandomSpawnPoint - provides the AI with a way to pick a random space if no other places left to move to
+    //helps prevent dead-locking of AI players
+    public Transform GetRandomSpawnPoint()
+    {
+        //spawn points are already randomized, will use an index to track through the list
+        //this allows for unique (and still random) referencing and prevents several calls to random
+        //if called multiple times - essentially provides psuedo random
+
+        if (spawnPoints.Count <= 0) return null;
+        if (getSpawnPointIndex >= spawnPoints.Count) getSpawnPointIndex = 0; //wrap back to start
+
+        return spawnPoints[getSpawnPointIndex++]; //post-increment ready for next call
     }
 }

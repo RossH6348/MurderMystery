@@ -11,9 +11,7 @@ GameObject:
   - component: {fileID: 6563894060352739779}
   - component: {fileID: 7834144917869827686}
   - component: {fileID: 5430371391528559276}
-  - component: {fileID: 5790629056591381368}
-  - component: {fileID: 5790629056591381375}
-  m_Layer: 3
+  m_Layer: 11
   m_Name: TaskGrid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,30 +81,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5790629056591381368
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5790629056591381369}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5495902117074765545, guid: be7328da5c138b34b808af3ee36a2c7b, type: 3}
---- !u!114 &5790629056591381375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5790629056591381369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44f2501023cf4fa48b054f2fd6c5a3f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pathNumber: {fileID: 0}

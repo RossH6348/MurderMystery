@@ -31,11 +31,12 @@ public class AI_MoveToTarget : ActionNode
         diceValue = (int)myTree.GetData("DiceRoll");
         movingCoroutine = null;
         movementTimeout = moveSpeed * (diceValue + 1); //+1 to allow small buffer for imperfect lerp
+        myTree.SetData("Position", myTransform.position);
     }
 
     protected override void OnStop()
     {
-        Debug.Log("AI Move Test - OnStop() - State: " + state.ToString() + " - moveState: " + moveState.ToString());
+        Debug.Log("AI Move To Target - OnStop() - State: " + state.ToString() + " - moveState: " + moveState.ToString());
         //turn over! - if we haven't made it to our final space we need to stop where we are (closest grid location)
         if(moveState != NodeState.Success)
         {
@@ -44,6 +45,7 @@ public class AI_MoveToTarget : ActionNode
             //force to move instantly to closest grid point --> not pretty but we are out of time!
             Node gridNode = gridSystem.getNodeAtPos(myTransform.position);
             myTransform.position = gridNode.position;
+            
         }
 
         myTree.SetData("Position", myTransform.position);
@@ -59,6 +61,13 @@ public class AI_MoveToTarget : ActionNode
                 if (targetPosition == null) return NodeState.Failed;
                 if (diceValue == 0) return NodeState.Failed;
                 List<GameObject> path;
+
+                //check if we are already in place
+                if (myTransform.position == targetPosition)
+                {
+                    moveState = NodeState.Success;
+                    break;
+                }
 
                 //plot shortest path to targetPosition
                 path = gridSystem.findPath(myTransform.position, targetPosition);

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using ZekstersLab.BehaviourTree;
+
+[RequireComponent(typeof(PlayerInventory))]
 public class AIScript : CharacterScript
 {
     private BehaviourTree myTree;
@@ -12,6 +14,13 @@ public class AIScript : CharacterScript
 
     private List<Task> tasks = new List<Task>();
     private bool takeUpAction = false;
+    private PlayerInventory inventory = null;
+
+    private void Awake()
+    {
+        inventory = GetComponent<PlayerInventory>();
+        if (inventory == null) Debug.LogError("Error: AI Requires a Player Inventory");
+    }
 
     public void initAI()
     {
@@ -22,7 +31,7 @@ public class AIScript : CharacterScript
 
         myTree.SetData("GridSystem", gridSystem);
         myTree.SetData("TaskList", tasks);
-
+        myTree.SetData("Inventory", inventory);
 
         var diceRoll = ScriptableObject.CreateInstance<AI_Roll_Die>();
         var moveToTarget = ScriptableObject.CreateInstance<AI_MoveToTarget>();
@@ -44,7 +53,23 @@ public class AIScript : CharacterScript
         gotoAndDoNextTask.children.Add(repeatUntilAtTarget);
         gotoAndDoNextTask.children.Add(doTask);
 
-        myTree.SetRoot(gotoAndDoNextTask);
+        var getRandomSpawnPoint = ScriptableObject.CreateInstance<AI_SetTargetToRandomSpawnPoint>();
+        var moveToSpawnPoint = ScriptableObject.CreateInstance<AI_MoveToTarget>();
+        moveToSpawnPoint.moveSpeed = 0.5f;
+
+        var moveToSpawnPointSequence = ScriptableObject.CreateInstance<SequenceNode>();
+        moveToSpawnPointSequence.children.Add(getRandomSpawnPoint);
+        moveToSpawnPointSequence.children.Add(moveToSpawnPoint);
+
+        var stuckInPlaceCondition = ScriptableObject.CreateInstance<AI_StuckInPlaceConditionTrue>();
+        stuckInPlaceCondition.child = moveToSpawnPointSequence;
+
+        var taskGroupSelector = ScriptableObject.CreateInstance<SelectorNode>();
+        taskGroupSelector.children.Add(gotoAndDoNextTask);
+        taskGroupSelector.children.Add(stuckInPlaceCondition);
+        
+
+        myTree.SetRoot(taskGroupSelector);
 
         //var log1 = ScriptableObject.CreateInstance<DebugLogNode>();
         //var log2 = ScriptableObject.CreateInstance<DebugLogNode>();
@@ -100,6 +125,7 @@ public class AIScript : CharacterScript
             myTree.SetData("CurrentTransform", transform);
             myTree.SetData("CurrentPosition", transform.position);
             myTree.SetData("TakeUpAction", takeUpAction);
+            
             //myTree.SetData("TargetPosition", targetPos);
             
             

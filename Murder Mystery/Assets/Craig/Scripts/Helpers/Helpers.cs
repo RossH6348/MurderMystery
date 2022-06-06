@@ -16,6 +16,12 @@ public class Helpers : MonoBehaviour
         }
     }
 
+    //allows AI to wait for the item to be shown
+    public static IEnumerator showPresentedItem(float showDuration, Action callback)
+    {
+        yield return new WaitForSeconds(showDuration);
+        callback();
+    }
 
     //This will start a coroutine loop of moving an object through a path.
     public static IEnumerator movePath(List<GameObject> path, Transform transform, float time, Action callback)
