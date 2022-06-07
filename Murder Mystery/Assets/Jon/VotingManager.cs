@@ -42,13 +42,19 @@ public class VotingManager : MonoBehaviour
             GameObject temp = Instantiate(characternamePrefab, verticalLayout.transform);
             if (character.TryGetComponent<CharacterScript>(out CharacterScript characterScript))
             {
-                Text tempText = temp.GetComponentInChildren<Text>();
-                if(tempText != null)
+                VoteButton tempVoteButton = temp.GetComponentInChildren<VoteButton>();
+                if(tempVoteButton != null)
                 {
-                    tempText.text = characterScript.characterName;
+                    tempVoteButton.CharacterName = characterScript.characterName;
+                    tempVoteButton.MyCharacterScript = GameSystemv2.Instance.VrPlayer.GetComponent<CharacterScript>();
                 }
             }
         }
+    }
+
+    public void makeSelection(string votee, string voter)
+    {
+        Debug.Log("");
     }
 
     // Update is called once per frame

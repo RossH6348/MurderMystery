@@ -57,6 +57,7 @@ public class GameSystemv2 : MonoBehaviour
     public List<GameObject> Characters { get => characters; }
     public GameStates CurrentState { get => currentState; }
     public GameObject TasklistParent { get => tasklistParent; }
+    public GameObject VrPlayer { get => vrPlayer;  }
 
 
 
