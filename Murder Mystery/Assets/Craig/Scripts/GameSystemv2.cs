@@ -103,7 +103,6 @@ public class GameSystemv2 : MonoBehaviour
                 {
                     //spawn characters
                     spawnPlayers();
-                    VotingManager.Instance.initializeVotingPanel();
                     currentState = NextState;
                 }
                 else if (nextState == GameStates.Quit)
