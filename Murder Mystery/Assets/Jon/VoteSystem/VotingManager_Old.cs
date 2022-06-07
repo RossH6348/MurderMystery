@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VotingManager : MonoBehaviour
+public class VotingManager_Old : MonoBehaviour
 {
     private int maxVotes = 3;
     private int votesRemaining;
