@@ -107,6 +107,7 @@ public class SpawnManagerv2 : MonoBehaviour
             }
 
             characters.Add(tempCharacter);
+
         }
 
         //set assassains target (assassin is always assigned first)
@@ -130,7 +131,11 @@ public class SpawnManagerv2 : MonoBehaviour
             return characterPrefab;
         }
 
-        return Instantiate(characterPrefab, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+        GameObject tempGO = Instantiate(characterPrefab, spawnPoints[spawnPointIndex].position, spawnPoints[spawnPointIndex].rotation);
+        //register the room that the player is in
+        RoomManager.Instance.RegisterInRoom(tempGO, spawnPoints[spawnPointIndex].GetComponent<SpawnPoint>().Room);
+
+        return tempGO;
        
     }
 
