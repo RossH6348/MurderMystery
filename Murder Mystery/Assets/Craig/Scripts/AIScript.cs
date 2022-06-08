@@ -33,7 +33,7 @@ public class AIScript : CharacterScript
         myTree.SetData("TaskList", tasks);
         myTree.SetData("Inventory", inventory);
         myTree.SetData("Role", role);
-        myTree.SetData("AssassinTarget", target);
+        
 
         var assassinPickRoom = ScriptableObject.CreateInstance<AI_IdentifyTargetRoom>();
         var assassinRoleDice = ScriptableObject.CreateInstance<AI_Roll_Die>();
@@ -144,11 +144,12 @@ public class AIScript : CharacterScript
             myTree.SetData("CurrentTransform", transform);
             myTree.SetData("CurrentPosition", transform.position);
             myTree.SetData("TakeUpAction", takeUpAction);
-            
+            myTree.SetData("AssassinTarget", target);
+
             //myTree.SetData("TargetPosition", targetPos);
-            
-            
-            if(myTree.Update() == NodeState.Running)
+
+
+            if (myTree.Update() == NodeState.Running)
             {
                 if((bool)myTree.GetData("TakeUpAction")) turnSystem.takeupAction();
             }
