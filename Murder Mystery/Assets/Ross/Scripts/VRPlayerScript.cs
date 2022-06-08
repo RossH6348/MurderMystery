@@ -78,7 +78,7 @@ public class VRPlayerScript : CharacterScript
         {
             //Allow the VR player to carry out their controls with the laser pointer.
             RaycastHit result;
-            if (Physics.Raycast(pointer.position, pointer.forward, out result, 9999.0f))
+            if (Physics.Raycast(pointer.position, pointer.forward, out result, 9999.0f, ~LayerMask.GetMask("Rooms")))
             {
 
                 if(!laser.activeSelf)

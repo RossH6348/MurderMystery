@@ -54,7 +54,7 @@ public class Helpers : MonoBehaviour
 
             if (source != null && GlobalResources.footsteps.Count - 1 > 0)
             {
-                Debug.Log("PLAY FOOTSTEP!");
+                //Debug.Log("PLAY FOOTSTEP!");
                 source.PlayOneShot(GlobalResources.footsteps[UnityEngine.Random.Range(0, GlobalResources.footsteps.Count - 1)]);
             }
 
@@ -69,6 +69,8 @@ public class Helpers : MonoBehaviour
 
             path.RemoveAt(0);
         }
+
+        source.Stop();
         callback();
        //status = turnStatus.Play; //Set this player back to play status.
     }

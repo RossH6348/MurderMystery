@@ -32,6 +32,21 @@ public class AIScript : CharacterScript
         myTree.SetData("GridSystem", gridSystem);
         myTree.SetData("TaskList", tasks);
         myTree.SetData("Inventory", inventory);
+        myTree.SetData("Role", role);
+        myTree.SetData("AssassinTarget", target);
+
+        var assassinPickRoom = ScriptableObject.CreateInstance<AI_IdentifyTargetRoom>();
+        var assassinRoleDice = ScriptableObject.CreateInstance<AI_Roll_Die>();
+        var assassinMoveToTarget = ScriptableObject.CreateInstance<AI_MoveToTarget>();
+        assassinMoveToTarget.moveSpeed = 0.5f;
+
+        var assassinSequence = ScriptableObject.CreateInstance<SequenceNode>();
+        assassinSequence.children.Add(assassinPickRoom);
+        assassinSequence.children.Add(assassinRoleDice);
+        assassinSequence.children.Add(assassinMoveToTarget);
+
+        var assassinConditionCheck = ScriptableObject.CreateInstance<AI_AssassinModeConditionCheck>();
+        assassinConditionCheck.child = assassinSequence;
 
         var diceRoll = ScriptableObject.CreateInstance<AI_Roll_Die>();
         var moveToTarget = ScriptableObject.CreateInstance<AI_MoveToTarget>();
@@ -67,9 +82,12 @@ public class AIScript : CharacterScript
         var taskGroupSelector = ScriptableObject.CreateInstance<SelectorNode>();
         taskGroupSelector.children.Add(gotoAndDoNextTask);
         taskGroupSelector.children.Add(stuckInPlaceCondition);
-        
 
-        myTree.SetRoot(taskGroupSelector);
+        var aiRootSelector = ScriptableObject.CreateInstance<SelectorNode>();
+        aiRootSelector.children.Add(assassinConditionCheck);
+        aiRootSelector.children.Add(taskGroupSelector);
+
+        myTree.SetRoot(aiRootSelector);
 
         //var log1 = ScriptableObject.CreateInstance<DebugLogNode>();
         //var log2 = ScriptableObject.CreateInstance<DebugLogNode>();

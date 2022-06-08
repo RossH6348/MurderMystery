@@ -12,6 +12,7 @@ public enum ItemID
 
 public abstract class ItemObject : ScriptableObject
 {
+    public string itemName;
     public GameObject prefab2d;
     public GameObject prefab3d;
     public ItemID type;
