@@ -58,7 +58,7 @@ public class AI_PickTask : ActionNode
                 {
                     freeUseIndex.Add(i);
                 }
-                else if (tasks[i].Item.name == inventory.inventory.Bag[0].item.name)
+                else if (tasks[i].Item.itemName == inventory.inventory.Bag[0].item.itemName)
                 {
                     //item matches task
                     index = i;

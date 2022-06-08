@@ -36,7 +36,16 @@ public class ItemDeck : MonoBehaviour
     {
         for(int i = 0; i < deckMultiplier; i++)
         {
-            shuffledItemDeck.AddRange(unshuffledItemDeck);
+            //shuffledItemDeck.AddRange(unshuffledItemDeck);
+            foreach(ItemObject itemObject in unshuffledItemDeck)
+            {
+                shuffledItemDeck.Add(ScriptableObject.CreateInstance<DefaultObject>());
+                shuffledItemDeck[shuffledItemDeck.Count - 1].description = itemObject.description;
+                shuffledItemDeck[shuffledItemDeck.Count - 1].prefab2d = itemObject.prefab2d;
+                shuffledItemDeck[shuffledItemDeck.Count - 1].prefab3d = itemObject.prefab3d;
+                shuffledItemDeck[shuffledItemDeck.Count - 1].itemName = itemObject.itemName;
+                shuffledItemDeck[shuffledItemDeck.Count - 1].type = itemObject.type;
+            }
         }
         shuffledItemDeck.Shuffle();
         foreach(ItemObject item in shuffledItemDeck)
@@ -85,7 +94,7 @@ public class ItemDeck : MonoBehaviour
         string retString = base.ToString() + "Deck: ";
         foreach(ItemObject item in shuffledItemDeck)
         {
-            retString = retString + item.name + "    ";
+            retString = retString + item.itemName + "    ";
         }
         return retString;
     }

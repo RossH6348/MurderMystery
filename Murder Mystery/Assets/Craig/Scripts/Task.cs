@@ -146,7 +146,7 @@ public class Task : MonoBehaviour
             
             return true;
         }
-        else if(requiresItem &&(itemPresented.name == item.name))
+        else if(requiresItem &&(itemPresented.itemName == item.itemName))
         {
             ItemDeck.Instance.ReturnToDeck(itemPresented);
             Vector3 tempPosition = itemGameObject.transform.position;

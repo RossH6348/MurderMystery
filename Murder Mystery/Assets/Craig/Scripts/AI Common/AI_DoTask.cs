@@ -72,7 +72,7 @@ public class AI_DoTask : ActionNode
                     //spawn it at the correct  task point
                     //manually call the DoTask function as the collider is looking for the item to be in a 'hand'
                     if (inventory.inventory.Bag.Count <= 0) return NodeState.Failed; //arrived at a task which required an item and we don't have one
-                    if (inventory.inventory.Bag[0].item.name != taskList[index].Item.name) return NodeState.Failed; //arrived at a task which we don't have an item for
+                    if (inventory.inventory.Bag[0].item.itemName != taskList[index].Item.itemName) return NodeState.Failed; //arrived at a task which we don't have an item for
 
                     item = inventory.FirstItemRequest();
                     Vector3 tempOffset = Vector3.Scale(taskList[index].PosOffset, new Vector3(1, 0.5f, 1));

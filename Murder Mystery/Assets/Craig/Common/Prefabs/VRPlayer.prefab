@@ -69,7 +69,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.75
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -680,6 +680,7 @@ PrefabInstance:
     - {fileID: 8776341950940765201, guid: 8c23eb282f5a8d640be5a67fb77008b5, type: 3}
     - {fileID: 4355710177403345855, guid: 8c23eb282f5a8d640be5a67fb77008b5, type: 3}
     - {fileID: 6842600836076172228, guid: 8c23eb282f5a8d640be5a67fb77008b5, type: 3}
+    - {fileID: 3853268690824990874, guid: 8c23eb282f5a8d640be5a67fb77008b5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8c23eb282f5a8d640be5a67fb77008b5, type: 3}
 --- !u!1001 &4774874533305979913
 PrefabInstance:

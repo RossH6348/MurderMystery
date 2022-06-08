@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372909fe1d9e19e4ebfb82dfae833bf1, type: 3}
   m_Name: Darts
   m_EditorClassIdentifier: 
+  itemName: Darts
   prefab2d: {fileID: 8581530122387564882, guid: bcd5b58908bd39c44b0b440979d92373, type: 3}
   prefab3d: {fileID: 7751036550072748560, guid: 16ea767ddc294734aa8165eea106874f, type: 3}
-  type: 2
+  type: 0
   description: 3 Darts
