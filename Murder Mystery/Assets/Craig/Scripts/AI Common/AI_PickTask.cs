@@ -87,7 +87,7 @@ public class AI_PickTask : ActionNode
         if((index >= tasks.Count) && (freeTasks.Count > 0))
         {
             tasks.Add(freeTasks[Random.Range((int)0, (int)freeTasks.Count)]);
-            index = freeTasks.Count - 1;
+            index = tasks.Count - 1;
         }
 
         if (index >= tasks.Count) return NodeState.Failed; //could not find a task to go to

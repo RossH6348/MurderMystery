@@ -30,6 +30,8 @@ public class AI_DoTask : ActionNode
 
     private Coroutine showItemCoroutine = null;
 
+    private doTaskState previousState = doTaskState.PresentItem;
+
     public override void Pause()
     {
         //Do nothing
@@ -37,6 +39,7 @@ public class AI_DoTask : ActionNode
 
     protected override void OnStart()
     {
+        Debug.Log("AI_DoTask - OnStart()");
         elapsedCoroutineTime = 0;
         showItemCoroutine = null;
         item = null;
@@ -51,8 +54,7 @@ public class AI_DoTask : ActionNode
 
     protected override void OnStop()
     {
-        //taskList.Clear();
-        //do nothing
+        Debug.Log("AI_DoTask OnStop");
     }
 
     
@@ -73,19 +75,26 @@ public class AI_DoTask : ActionNode
                     if (inventory.inventory.Bag[0].item.name != taskList[index].Item.name) return NodeState.Failed; //arrived at a task which we don't have an item for
 
                     item = inventory.FirstItemRequest();
-                    temp = Instantiate(item.prefab3d, taskList[index].TaskItemPoint.position + (taskList[index].PosOffset), taskList[index].TaskItemPoint.rotation);
-
+                    Vector3 tempOffset = Vector3.Scale(taskList[index].PosOffset, new Vector3(1, 0.5f, 1));
+                    temp = Instantiate(item.prefab3d, taskList[index].TaskItemPoint.position + tempOffset, taskList[index].TaskItemPoint.rotation);
+                    if(temp == null)
+                    {
+                        Debug.Log("AI_DoTask - Could not spawn item from inventory - temp = null");
+                        return NodeState.Failed;
+                    }
                     //show the item and then move to next state
-                    showItemCoroutine = Helpers.Instance.StartCoroutine(Helpers.showPresentedItem(showDuration, () => { currentState = doTaskState.DoTask; }));
+                    showItemCoroutine = Helpers.Instance.StartCoroutine(Helpers.Instance.showPresentedItem(showDuration, () => { previousState = currentState; currentState = doTaskState.DoTask; }));
+                    previousState = currentState;
                     currentState = doTaskState.ShowingItem;
                 }
                 else
                 {
                     //does not require an item to be spwaned
                     //if we have a current item, we should abandon it now
-                    inventory.FirstItemRequest(); //item is abandoned as we do not store the return;
+                    ItemDeck.Instance.ReturnToDeck(inventory.FirstItemRequest()); //item is abandoned, return it to the deck;
                     Debug.Log("Task" + taskList[index].name + " In Progress...");
                     taskList[index].DoTask(null, null);
+                    previousState = currentState;
                     currentState = doTaskState.WaitForReward;
                 }
                 break;
@@ -103,8 +112,17 @@ public class AI_DoTask : ActionNode
                 break;
 
             case doTaskState.DoTask:
-                taskList[index].DoTask(item, temp);
+                if(temp == null)
+                {
+                    Debug.Log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! AI_DoTask: currentState = DoTask and temp = Null - should not be possible !!!!!!!!!!!!!!!!!!!!!!!!!");
+                    //any spawned item will return to deck automatically
+                    return NodeState.Failed;
+                    
+                }
                 Debug.Log("Task" + taskList[index].name + " In Progress...");
+                taskList[index].DoTask(item, temp);
+                
+                previousState = currentState;
                 currentState = doTaskState.WaitForReward;
                 break;
 
@@ -114,6 +132,7 @@ public class AI_DoTask : ActionNode
                 {
                     if(taskList[index].TaskReward != null)
                     {
+                        previousState = currentState;
                         currentState = doTaskState.CollectReward;
                     }
 
@@ -132,6 +151,9 @@ public class AI_DoTask : ActionNode
                 inventory.ItemCollect(taskList[index].TaskReward);
                 taskList.RemoveAt(index);
                 Debug.Log("Task Completed");
+                previousState = currentState;
+                currentState = doTaskState.PresentItem;
+                myTree.SetData("TakeUpAction", (bool)true);
                 return NodeState.Success;
                 //break; not needed due to previous return
 

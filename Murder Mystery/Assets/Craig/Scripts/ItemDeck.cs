@@ -60,6 +60,7 @@ public class ItemDeck : MonoBehaviour
         numberOfWeapons = Mathf.Clamp(numberOfWeapons, 0, unshuffledItemDeck.Count);
         ShuffleDeckAndAssignWeapons(numberOfWeapons);
         chanceOfUseableItem = Mathf.Clamp(chanceOfUseableItem, minChance, maxChance);
+        Debug.Log(this.ToString());
     }
 
     public ItemObject DrawFromDeck()
@@ -74,17 +75,28 @@ public class ItemDeck : MonoBehaviour
             temp = shuffledItemDeck[0];
             shuffledItemDeck.RemoveAt(0);
         }
-
+        Debug.Log(this.ToString());
         return temp;
 
     }
 
-    public void ReturnToDeck(ItemObject itemObject)
+    public override string ToString()
     {
+        string retString = base.ToString() + "Deck: ";
         foreach(ItemObject item in shuffledItemDeck)
         {
-            if (item == itemObject) return;
+            retString = retString + item.name + "    ";
         }
+        return retString;
+    }
+
+    public void ReturnToDeck(ItemObject itemObject)
+    {
+        //foreach(ItemObject item in shuffledItemDeck)
+        //{
+        //    if (item == itemObject) return;
+        //}
         shuffledItemDeck.Add(itemObject);
+        Debug.Log(this.ToString());
     }
 }

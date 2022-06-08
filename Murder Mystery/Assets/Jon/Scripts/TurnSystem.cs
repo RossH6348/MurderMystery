@@ -25,6 +25,8 @@ public class TurnSystem : MonoBehaviour
         }
     }
 
+    public float StartingTurnTime { get => startingTurnTime;  }
+
     // Start is called before the first frame update
     public void StartTurnSystem()
     {
@@ -78,7 +80,7 @@ public class TurnSystem : MonoBehaviour
 
         character.onTurnEnter();
 
-        Debug.Log("It is currently: " + character.characterName + "'s turn!");
+        Debug.Log("********************It is currently: " + character.characterName + "'s turn!**************************");
 
         if(activeCharacter.GetComponent<AIScript>() == null)
         {

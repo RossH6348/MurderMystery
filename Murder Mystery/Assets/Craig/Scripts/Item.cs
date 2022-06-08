@@ -10,6 +10,7 @@ public class Item : MonoBehaviour
     private Interactable myInteractable = null;
     private Rigidbody myRB = null;
     private bool previousAttachedToHand = false;
+    private float abandonedDuration = 0;
 
     private void Awake()
     {
@@ -21,6 +22,22 @@ public class Item : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!myInteractable.attachedToHand)
+        {
+            abandonedDuration += Time.deltaTime;
+        }
+        else
+        {
+            abandonedDuration = 0;
+        }
+        if (abandonedDuration >= TurnSystem.Instance.StartingTurnTime)
+        {
+            if(gameObject.TryGetComponent<ItemFoundation>(out ItemFoundation itemFoundation))
+            {
+                ItemDeck.Instance.ReturnToDeck(itemFoundation.item);
+            }
+            Destroy(this.gameObject);
+        }
         if((!previousAttachedToHand) && (myInteractable.attachedToHand == true))
         {
             previousAttachedToHand = true;

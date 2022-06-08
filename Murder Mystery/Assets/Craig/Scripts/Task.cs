@@ -34,6 +34,11 @@ public class Task : MonoBehaviour
         {
             myItem = Instantiate(item.prefab3d, taskItemPoint);
             myItem.transform.position += posOffset;
+            if(myItem.TryGetComponent<Item>(out Item itemTemp))
+            {
+                //disable the item script to prevent abandonment time from self destroying
+                itemTemp.enabled = false;
+            }
         }
 
         //set properties used by AI
@@ -103,6 +108,7 @@ public class Task : MonoBehaviour
         if(newItem != null)
         {
             taskReward = Instantiate(newItem.prefab3d, taskItemPoint.position + posOffset, transform.rotation);
+            if (taskReward == null) ItemDeck.Instance.ReturnToDeck(newItem);
             //TODO play positive sound
         }
         else
@@ -143,10 +149,11 @@ public class Task : MonoBehaviour
         else if(requiresItem &&(itemPresented.name == item.name))
         {
             ItemDeck.Instance.ReturnToDeck(itemPresented);
-            
-            coroutineRunning = true;
-            StartCoroutine(DoTaskComplete(itemGameObject.transform.position));
+            Vector3 tempPosition = itemGameObject.transform.position;
             Destroy(itemGameObject);
+            coroutineRunning = true;
+            StartCoroutine(DoTaskComplete(tempPosition));
+            
             return true;
         }
 
@@ -182,10 +189,10 @@ public class Task : MonoBehaviour
                     //not attached to the hand anymore - player has dropped it
                     DoTask(itemFoundation.item, other.gameObject);
                 }
-                else
-                {
+                //else
+                //{
                     timeInContact = 0;
-                }
+                //}
                 
             }
             else

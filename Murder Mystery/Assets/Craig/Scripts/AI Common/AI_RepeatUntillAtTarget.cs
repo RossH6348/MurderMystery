@@ -65,9 +65,6 @@ public class AI_RepeatUntillAtTarget : DecoratorNode
             return NodeState.Failed;
         }
         
-
-        
-        
         myTree.SetData("TakeUpAction", (bool)true);
         
         return (Vector3.Distance(currentPos, targetPos) <= threshold) ? NodeState.Success : NodeState.Running;

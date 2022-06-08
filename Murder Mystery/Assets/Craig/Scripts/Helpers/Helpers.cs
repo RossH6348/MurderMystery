@@ -17,10 +17,13 @@ public class Helpers : MonoBehaviour
     }
 
     //allows AI to wait for the item to be shown
-    public static IEnumerator showPresentedItem(float showDuration, Action callback)
+    public IEnumerator showPresentedItem(float showDuration, Action callback)
     {
+        Debug.Log("ShowPresentedItem - Start of " + showDuration.ToString() + "s delay");
         yield return new WaitForSeconds(showDuration);
+        Debug.Log("ShowPresentedItem - showDuration expired, pre Callback");
         callback();
+        Debug.Log("ShowPresentedItem - post Callback");
     }
 
     //This will start a coroutine loop of moving an object through a path.

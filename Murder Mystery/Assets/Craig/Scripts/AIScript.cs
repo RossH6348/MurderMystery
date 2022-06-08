@@ -120,7 +120,8 @@ public class AIScript : CharacterScript
         }
         else
         {
-            myTree.SetData("TakeUpAction", (bool)false);
+            //myTree.SetData("TakeUpAction", (bool)false);
+            takeUpAction = false;
             targetPos = targetTransform.position;
             myTree.SetData("CurrentTransform", transform);
             myTree.SetData("CurrentPosition", transform.position);
