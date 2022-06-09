@@ -1,3 +1,5 @@
+//Author: Craig Zeki - Zek21003166
+
 using UnityEngine;
 public interface IHUDScreen
 {
