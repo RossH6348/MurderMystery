@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Valve.VR;
 using Valve.VR.InteractionSystem;
 
@@ -14,6 +15,8 @@ public class VRPlayerScript : CharacterScript
     private GameObject selectedObject = null;
 
     [SerializeField] private GameObject wristHUD;
+    [SerializeField] private Text profileName;
+    [SerializeField] private Text profileRole;
 
     //VR Control scheme.
     public SteamVR_Action_Boolean triggerAction;
@@ -143,7 +146,11 @@ public class VRPlayerScript : CharacterScript
 
             //This toggles whether to view the wrist or not.
             if (wristToggle.GetStateDown(SteamVR_Input_Sources.LeftHand))
+            {
                 wristHUD.SetActive(!wristHUD.activeSelf);
+                profileName.text = "Name - " + characterName;
+                profileRole.text = "Role - " + (role == Role.Suspect ? "Suspect" : "Assassin");
+            }
 
             //Only allow scrolling and clicking, if the wristHUD is visible.
             if (wristHUD.activeSelf)

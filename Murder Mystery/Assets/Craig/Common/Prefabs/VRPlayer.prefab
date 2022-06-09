@@ -689,6 +689,39 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 646321366899690364, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
+      propertyPath: m_Text
+      value: 'You are attending a fancy house party as a guest. However, there is
+        an assassin lurking within the house with you; finding their mark.
+
+
+        There
+        is two rules that exist within Murder Mystery: Suspect and Assassin.
+
+
+        The
+        assassin have the role of finding their victim and kill them to win without
+        being seen, meanwhile the suspect must complete all tasks or correctly accuse
+        who''s the assassin to win.
+
+
+        You can only carry one item at a time,
+        and to get a new item you must complete the current related task at hand
+        with the item in your possession.
+
+
+        As the suspect, you can only
+        make one action per turn. (Except for completing tasks when you are on a
+        task space.)
+
+
+        As the assassin, you can only make two actions per
+        turn. This does not include making two movements.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5030915559197132897, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5822941176180671649, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -697,6 +730,14 @@ PrefabInstance:
       propertyPath: m_Texture
       value: 
       objectReference: {fileID: 8400000, guid: e54c14d355fdd874a899824068668e34, type: 2}
+    - target: {fileID: 5822941176288197952, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
+      propertyPath: profileName
+      value: 
+      objectReference: {fileID: 2914303812041317911}
+    - target: {fileID: 5822941176288197952, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
+      propertyPath: profileRole
+      value: 
+      objectReference: {fileID: 7141855619230948710}
     - target: {fileID: 5822941176288197952, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
       propertyPath: wristLeft.actionPath
       value: /actions/wristhud/in/wristleft
@@ -781,6 +822,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6394011707476116601, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7096086751542845614, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -805,6 +850,10 @@ PrefabInstance:
       propertyPath: testPlayerType
       value: Human
       objectReference: {fileID: 0}
+    - target: {fileID: 8790484350603684461, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
 --- !u!1 &1336721575013222637 stripped
@@ -822,6 +871,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5818945230803767426, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
   m_PrefabInstance: {fileID: 4774874533305979913}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2914303812041317911 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7652298523501201950, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
+  m_PrefabInstance: {fileID: 4774874533305979913}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7141855619230948710 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2404698786508065135, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
+  m_PrefabInstance: {fileID: 4774874533305979913}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1336721576201987450 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5822941176375652723, guid: 7017a9d38dafa5448adaa29710eece46, type: 3}
