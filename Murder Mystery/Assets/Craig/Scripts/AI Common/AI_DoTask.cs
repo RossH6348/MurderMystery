@@ -151,6 +151,12 @@ public class AI_DoTask : ActionNode
                 inventory.ItemCollect(taskList[index].TaskReward);
                 taskList.RemoveAt(index);
                 Debug.Log("Task Completed");
+                string tempStr = "Remaining tasks: ";
+                foreach(Task task in taskList)
+                {
+                    tempStr = tempStr + task.name + "     ";
+                }
+                Debug.Log(tempStr);
                 previousState = currentState;
                 currentState = doTaskState.PresentItem;
                 myTree.SetData("TakeUpAction", (bool)true);

@@ -22,6 +22,8 @@ public class AI_StuckInPlaceConditionTrue : DecoratorNode
 
     protected override NodeState OnUpdate()
     {
+        Debug.Log(((bool)myTree.GetData("StuckInPlace")).ToString());
+        Debug.Assert(child != null, "Child == null");
         if (!(bool)myTree.GetData("StuckInPlace")) return NodeState.Failed;
 
         return child.Update();

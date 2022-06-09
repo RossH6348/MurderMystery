@@ -27,6 +27,7 @@ public class AI_AssassinModeConditionCheck : DecoratorNode
 
     protected override NodeState OnUpdate()
     {
+        if (inventory.inventory.Bag.Count <= 0) { Debug.Log("Bag was empty"); return NodeState.Failed; }
         if( (inventory.inventory.Bag[0].item.type == ItemID.Weapon) &&
             (role == Role.Assassin) &&
             (assassinTarget != null) )

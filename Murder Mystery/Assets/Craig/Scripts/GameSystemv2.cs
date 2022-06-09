@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class GameSystemv2 : MonoBehaviour
 {
@@ -29,8 +29,14 @@ public class GameSystemv2 : MonoBehaviour
 
     [SerializeField] private GameObject tasklistParent;
 
+    [SerializeField] private Canvas controlsCanvas;
+    [SerializeField] private Canvas winCanvas;
+    [SerializeField] private Text winPlayerText;
+    [SerializeField] private Text winReasonText;
+
     private List<GameObject> characterPrefabs = new List<GameObject>();
     private List<GameObject> characters = new List<GameObject>();
+
 
 
 
@@ -58,6 +64,7 @@ public class GameSystemv2 : MonoBehaviour
     public GameStates CurrentState { get => currentState; }
     public GameObject TasklistParent { get => tasklistParent; }
     public GameObject VrPlayer { get => vrPlayer;  }
+    public Canvas ControlsCanvas { get => controlsCanvas; set => controlsCanvas = value; }
 
 
 
@@ -95,6 +102,7 @@ public class GameSystemv2 : MonoBehaviour
         }
     }
 
+
     private void DoTransition()
     {
         switch (currentState)
@@ -102,9 +110,11 @@ public class GameSystemv2 : MonoBehaviour
             case GameStates.Menu:
                 if (nextState == GameStates.Initializing)
                 {
+                    if (winCanvas != null) winCanvas.enabled = false;
                     //spawn characters
                     spawnPlayers();
                     VotingManager.Instance.initializeVotingPanel();
+                    if (controlsCanvas != null) controlsCanvas.enabled = true;
                     currentState = NextState;
                 }
                 else if (nextState == GameStates.Quit)
@@ -148,6 +158,31 @@ public class GameSystemv2 : MonoBehaviour
         }
     }
 
+    private void showWinCanvas(CharacterScript winner, WinReason reason)
+    {
+        if (winner == null) return;
+        if (reason >= WinReason.NumOfWinReasons) return;
+
+        switch (reason)
+        {
+            case WinReason.AllTasksComplete:
+                winReasonText.text = "Completed All Tasks";
+                winPlayerText.text = winner.characterName;
+                if (winner.characterName == vrPlayer.GetComponent<CharacterScript>().characterName) winPlayerText.text = winPlayerText.text + " (You!)";
+                winPlayerText.text = winPlayerText.text + " Won!";
+                winCanvas.enabled = true;
+                break;
+            case WinReason.TargetKilled:
+                break;
+            case WinReason.TargetAccused:
+                break;
+            case WinReason.NumOfWinReasons:
+            default:
+                break;
+        }
+        winCanvas.enabled = true;
+    }
+
     private void spawnPlayers()
     {
         characterPrefabs.Add(vrPlayer);
@@ -186,6 +221,8 @@ public class GameSystemv2 : MonoBehaviour
                 //Do nothing
                 break;
         }
+
+        showWinCanvas(player, reason);
 
         VRPlayerScript vrPlayer;
         if (player.gameObject.TryGetComponent<VRPlayerScript>(out vrPlayer))

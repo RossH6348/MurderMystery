@@ -25,6 +25,7 @@ public class DiceScript : MonoBehaviour
     
     public void onPickup()
     {
+        GameSystemv2.Instance.ControlsCanvas.enabled = false;
         //Add an ignore hovering component, which effectively makes it so the player can't pick up the dice again.
         gameObject.AddComponent<IgnoreHovering>();
     }
