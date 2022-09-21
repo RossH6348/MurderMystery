@@ -1,3 +1,6 @@
+//Author: Craig Zeki - Zek21003166
+//Author: Jon Fieldhouse - original SpawnManager.cs in Jon's folder
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

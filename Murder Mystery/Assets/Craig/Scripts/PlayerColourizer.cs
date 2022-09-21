@@ -1,3 +1,7 @@
+//Author: Craig Zeki - Zek21003166
+//
+//handling of switching emissive material on / off based on https://blog.terresquall.com/2020/01/getting-your-emission-maps-to-work-in-unity/
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
